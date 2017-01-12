@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-06-30T14:30:43 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="produtos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c66e3a04-9934-41bd-95cd-a76a26b9c82a">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PDV Data Adapter "/>
+	<parameter name="PRODUTO_DESCRICAO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT produto.descricao,
+	produto.quantidadeestoque,
+	produto.valorunitario
+FROM produto
+WHERE 
+	 produto.descricao LIKE $P{PRODUTO_DESCRICAO} 
+ORDER BY produto.descricao ASC]]>
+	</queryString>
+	<field name="descricao" class="java.lang.String"/>
+	<field name="quantidadeestoque" class="java.math.BigDecimal"/>
+	<field name="valorunitario" class="java.math.BigDecimal"/>
+	<title>
+		<band height="92" splitType="Stretch">
+			<image>
+				<reportElement x="170" y="10" width="210" height="60" uuid="aae6ad48-ed86-4ca6-9765-adf0cc364e1a"/>
+				<imageExpression><![CDATA["src/main/webapp/resources/images/logo-syc.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="53" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="6" width="534" height="30" uuid="e1a14807-615c-4573-9ec1-222d9bc2e881"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[RELATORIO DE PRODUTOS]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="130" height="40" uuid="47633339-c99d-4c00-b1de-b5abbcecb08c"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIÇÃO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="0" width="120" height="40" uuid="f87dbab3-f0ae-459c-8345-a59493fc961e"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PREÇO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="0" width="130" height="40" uuid="c6cdabca-1706-4832-8268-8bdf02deddf3"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUANTIDADE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="130" height="30" uuid="5496db4c-473a-4aba-9dc5-d442d6432927"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<textField pattern="0.00">
+				<reportElement x="130" y="0" width="120" height="30" uuid="973f5ee3-23a4-4b0e-ab04-5b2222824ef6"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valorunitario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="250" y="0" width="130" height="30" uuid="223c848e-1635-48d0-99f1-0ff718f197ae"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantidadeestoque}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="480" height="53" uuid="6651e398-aff0-4ad5-b86c-1233455a9e86"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[AVENIDA DA RUA, N540 QD 27 LT 21 CYCSISTENS CREATIVE TECNOLOGY]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

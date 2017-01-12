@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+		
+			
+			<p:commandButton title="Novo" icon="ui-icon-plus"
+					oncomplete="PF('dialogProduto').show();"					
+					update=":frmCadastro:tabItens:frmItens:tabelaCesta :frmCadastro:pnlTotal"
+					process="@this" />
+			
+			<p:dataTable id="tabelaCesta" emptyMessage="Nenhum registro encontrado." style="margin-top: 20px" 
+				rows="5" paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom" value="#{pedidoBean.itensPedido}" var="itemVenda" >
+
+				<p:column headerText="Descrição">
+					<h:outputText value="#{itemVenda.produto.descricao}" />
+				</p:column>
+
+				<p:column headerText="Preço Un.">
+					<h:outputText value="#{itemVenda.produto.valorUnitario}">
+						<f:convertNumber locale="pt_BR" minFractionDigits="2" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Qtde.">
+					<h:outputText value="#{itemVenda.quantidade}" />
+				</p:column>
+				
+				<p:column headerText="Preço Parcial">
+					<h:outputText value="#{itemVenda.valorParcial}">
+						<f:convertNumber locale="pt_BR" minFractionDigits="2" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Opções">
+					<p:commandButton  icon="ui-icon-minus"  actionListener="#{pedidoBean.removerItem()}" 
+						update=":frmCadastro:tabItens:frmItens:tabelaCesta :frmCadastro:pnlTotal">
+						<f:attribute name="itemSelecionado" value="#{itemVenda} "/>
+					</p:commandButton>
+					
+							
+					
+				</p:column>
+			</p:dataTable>	
+
+		
+</ui:composition>

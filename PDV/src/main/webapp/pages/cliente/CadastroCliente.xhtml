@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml" 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui">
+	
+	
+	
+
+<ui:define name="corpo">
+
+		
+		
+		
+		<h:form id="frmCadastro">
+		
+
+			<h1>Cliente</h1>
+
+			<p:messages id="msg" autoUpdate="true" closable="true" />
+
+			<ui:include src="/pages/cliente/BotoesCadastro.xhtml" />
+
+						
+
+			<p:panelGrid columns="4" style="width: 100%; margin-top: 20px"
+				columnClasses="rotulo, campo, rotulo, campo">
+				
+
+				<p:outputLabel value="Nome" />
+				<p:inputText value="#{clienteBean.cliente.nome}"  />
+				
+				<p:outputLabel value="Tipo" />
+				<p:inputText value="#{clienteBean.cliente.cliTipo}" />
+
+
+				<p:outputLabel value="CPF/CNPJ" />
+				<p:inputText value="#{clienteBean.cliente.cpfCnpj}" />
+
+				<p:outputLabel value="RG/INSC" />
+				<p:inputText value="#{clienteBean.cliente.rgInsc}" />
+
+				
+			</p:panelGrid>
+
+			<p:tabView style="margin-top: 20px">
+				<p:tab title="Endereço">
+					<p:panelGrid columns="4"
+						columnClasses="rotulo, campo, rotulo, campo">
+
+						<p:outputLabel value="Rua" />
+						<h:inputText value="#{clienteBean.cliente.endEndereco}" size="20"  />
+
+						<p:outputLabel value="Complemento" />
+						<h:inputText value="#{clienteBean.cliente.endComp}"  />
+
+
+						<p:outputLabel value="Nº" />
+						<h:inputText value="#{clienteBean.cliente.endNum}" size="5" />
+
+						<p:outputLabel value="Bairro" />
+						<h:inputText value="#{clienteBean.cliente.endBairro}"  />
+
+
+						<p:outputLabel value="Cidade" />
+						<h:inputText value="#{clienteBean.cliente.endCidNom}" />
+
+						<p:outputLabel value="UF" />
+						<h:inputText value="#{clienteBean.cliente.endCidUf}" />
+
+						<p:outputLabel value="CEP" />
+						<h:inputText value="#{clienteBean.cliente.endCep}" />
+
+						<p:outputLabel value="Cod. IBGE" />
+						<h:inputText value="#{clienteBean.cliente.endIBGEMunc}" />
+						
+						<p:outputLabel value="Cod. IBGE UF" />
+						<h:inputText value="#{clienteBean.cliente.endIBGEUF}" />						
+						
+
+
+					</p:panelGrid>
+				</p:tab>
+				<p:tab title="Dados Fiscais">
+
+					<p:panelGrid columns="4"
+						columnClasses="rotulo, campo, rotulo, campo">
+
+
+						<p:outputLabel value="CPF" />
+						<h:inputText size="20"  />
+
+						<p:outputLabel value="RG" />
+						<h:inputText size="20"  />
+
+
+
+					</p:panelGrid>
+
+				</p:tab>
+				<p:tab title="Complemento">
+
+				</p:tab>
+			</p:tabView>
+
+		</h:form>
+	</ui:define>
+
+
+</ui:composition>

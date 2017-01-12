@@ -1,0 +1,72 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Pesquisa de Clientes</ui:define>
+
+	<ui:define name="corpo">
+
+		
+		<h1>Pesquisa de Clientes</h1>
+
+		<h:form id="frmPesquisa">
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:button value="Novo" id="botaoNovo"
+						outcome="/pages/cliente/CadastroCliente.xhtml" />
+						<p:separator/>				
+
+					<p:commandButton value="Pesquisar"
+						actionListener="#{pesquisaClienteBean.init}" update="@form" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+
+			<p:dataTable id="clientesTable"
+				value="#{pesquisaClienteBean.clientes}" var="clienteVar"
+				style="margin-top: 20px" emptyMessage="Nenhum cliente encontrado."
+				rows="20" paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom">
+				<p:column headerText="Código"
+					style="text-align: center; width: 100px">
+					<h:outputText value="#{clienteVar.codigo}" />
+				</p:column>
+				<p:column headerText="Nome" filterBy="#{clienteVar.nome}">
+					<h:outputText value="#{clienteVar.nome}" />
+				</p:column>
+
+				<p:column headerText="Telefone">
+					<h:outputText value="#{clienteVar.fone}" />
+				</p:column>
+
+
+				<p:column style="width: 100px; text-align: center">
+					<p:button icon="ui-icon-pencil" title="Editar"
+						outcome="/pages/cliente/CadastroCliente.xhtml" >
+						<f:param name="clienteCod" value="#{clienteVar.codigo}" />						
+<!-- 						<f:attribute value="#{clienteVar}" name="clienteSelecionado" /> -->
+					</p:button>
+					<p:commandButton icon="ui-icon-trash" title="Excluir"
+						process="@this" oncomplete="PF('confirmacaoExclusao').show()"
+						update="@form" >
+						<p:confirm header="Confirmação"
+							message="Deseja excluir este cadastro ?" icon="ui-icon-alert" />
+						<f:attribute value="#{clienteVar}" name="clienteSelecionado" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+			<p:confirmDialog global="true">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+		</h:form>
+	</ui:define>
+</ui:composition>

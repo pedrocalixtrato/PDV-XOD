@@ -1,0 +1,74 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Pesquisa de Clientes</ui:define>
+
+	<ui:define name="corpo">
+
+		
+		<h1>Pesquisa de Usuarios</h1>
+
+		<h:form id="frmPesquisa">
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:button value="Novo" id="botaoNovo"
+						outcome="/pages/usuario/CadastroUsuario.xhtml" />
+						<p:separator/>
+
+					<p:inputText value="#{pesquisaUsuarioBean.usuario.nome}" />
+
+					<p:commandButton value="Pesquisar"
+						actionListener="#{pesquisaUsuarioBean.listar}" update="@form" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+
+			<p:dataTable id="usuarioTable"
+				value="#{pesquisaUsuarioBean.usuarios}" var="usuarioVar"
+				style="margin-top: 20px" emptyMessage="Nenhum usuario encontrado."
+				rows="20" paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom">
+				<p:column headerText="Código"
+					style="text-align: center; width: 100px">
+					<h:outputText value="#{usuarioVar.codigo}" />
+				</p:column>
+				<p:column headerText="Nome" filterBy="#{usuarioVar.nome}">
+					<h:outputText value="#{usuarioVar.nome}" />
+				</p:column>
+
+				<p:column headerText="CPF">
+					<h:outputText value="#{usuarioVar.cpf}" />
+				</p:column>
+
+
+				<p:column style="width: 100px; text-align: center">
+					<p:button icon="ui-icon-pencil" title="Editar"
+						outcome="/pages/usuario/CadastroUsuario.xhtml" >
+						<f:param name="usuarioCod" value="#{usuarioVar.codigo}" />						
+
+					</p:button>
+					<p:commandButton icon="ui-icon-trash" title="Excluir"
+						process="@this" oncomplete="PF('confirmacaoExclusao').show()"
+						update="@form" actionListener="#{usuarioBean.excluir}">
+						<p:confirm header="Confirmação"
+							message="Deseja excluir este cadastro ?" icon="ui-icon-alert" />
+						<f:attribute value="#{usuarioVar}" name="usuarioSelecionado" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+			<p:confirmDialog global="true">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,44 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Dashboard</ui:define>
+
+	<ui:define name="corpo">
+		<br />
+		<br />
+		<br />Seja bem-vindo! #{seguranca.IDUsuario}<br />
+		<br />
+		<br />
+		
+		 <p:graphicImage library="images" name="Grafico.png"
+			styleClass="imagemCentralizada" />
+		 <br/>
+		 <br/>
+		 <br/>
+		 <br/>
+		 <br/>
+	<h:form >
+	 	<p:panelGrid columns="3" >
+	 	<f:facet name="header">
+		<p:dataList id="contasTable"
+			value="#{pesquisaContasAPagarBean.contasVencidas}" var="contasVar"
+			type="ordered">
+			<f:facet name="header">
+            Contas Vencidas
+        	</f:facet>
+        	
+        	#{contasVar.fornecedor}, R$ #{contasVar.valor}, #{contasVar.data}, #{contasVar.tipo}
+        	
+		</p:dataList>
+		</f:facet>
+		</p:panelGrid>
+	</h:form>
+		
+
+	</ui:define>
+
+</ui:composition>

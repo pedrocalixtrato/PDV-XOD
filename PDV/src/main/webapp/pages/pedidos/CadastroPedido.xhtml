@@ -1,0 +1,160 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+
+
+	<ui:define name="titulo">Novo pedido</ui:define>
+
+	<ui:define name="corpo">
+		<p:growl id="msg" />
+		<h:form id="frmCadastro">
+			<h1>Novo pedido</h1>
+
+			<p:messages autoUpdate="true" closable="true" />
+
+
+			<ui:include src="/WEB-INF/template/pedidos/BotoesPedido.xhtml" />
+			
+			
+			
+								
+			
+			
+			<ui:include src="/WEB-INF/template/pedidos/CapaPedido.xhtml" />
+
+			<p:tabView id="tabItens" style="margin-top: 20px">
+				<p:tab id="itens" title="Itens">
+					<h:form id="frmItens">
+						<ui:include src="/WEB-INF/template/pedidos/ItensPedido.xhtml" />
+					</h:form>
+				</p:tab>
+				<p:tab title="Dados de entrega">
+					<ui:include
+						src="/WEB-INF/template/pedidos/DadosEntregaPedido.xhtml" />
+				</p:tab>
+				<p:tab title="Observação">
+					<ui:include src="/WEB-INF/template/pedidos/ObservacaoPedido.xhtml" />
+				</p:tab>
+			</p:tabView>
+			<h3></h3>
+			<p:panel header="Finalização">
+				<h:panelGrid id="pnlTotal" columns="3">
+					<p:outputLabel value="Total: R$" />
+					<h:outputText value="#{pedidoBean.pedido.valorTotal}">
+						<f:convertNumber locale="pt_BR" minFractionDigits="2" />
+					</h:outputText>
+					<p:commandButton value="Finalizar"
+						actionListener="#{pedidoBean.finalizar()}"
+						oncomplete="PF('dlg').show();" update=":frmFinalizar:pnlFinalizar" />
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+
+		<p:dialog header="Finalizar Venda" widgetVar="dlg" draggable="false"
+			resizable="false" closable="false">
+			<h:form id="frmFinalizar">
+				<h:panelGrid id="pnlFinalizar" columns="2">
+
+					<p:outputLabel value="Horário: " />
+					<h:outputText value="#{pedidoBean.pedido.dataCriacao}">
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" locale="pt_BR"
+							timeZone="GMT-3" />
+					</h:outputText>
+
+					<p:outputLabel value="Funcionario:" />
+					<p:selectOneMenu value="#{pedidoBean.pedido.usuario}" filter="true"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Selecione um funcionario"
+							noSelectionOption="true" />
+						<f:selectItems value="#{pedidoBean.usuarios}" var="usuarioVar"
+							itemValue="#{usuarioVar}" itemLabel="#{usuarioVar.nome}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="Total: R$" />
+					<h:outputText value="#{pedidoBean.pedido.valorTotal}">
+						<f:convertNumber locale="pt_BR" minFractionDigits="2" />
+					</h:outputText>
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<p:commandButton value="Salvar"
+						actionListener="#{pedidoBean.salvar()}" update=":msg"
+						oncomplete="PF('dlg').hide();" />
+					<p:commandButton value="Fechar" oncomplete="PF('dlg').hide();" />
+				</h:panelGrid>
+
+			</h:form>
+
+		</p:dialog>
+
+			
+			<p:dialog id="dialogProduto" header="Incluir Produto" 
+			widgetVar="dialogProduto" draggable="false"
+			resizable="true" closable="true"			
+			showEffect="slide" hideEffect="slide"
+			width="520" >
+					
+								
+
+				<f:facet name="footer">
+					<p:commandButton value="Salvar"
+						actionListener="#{pedidoBean.adcionar}"
+						update=":frmCadastro:tabItens:frmItens:tabelaCesta :frmCadastro:pnlTotal">
+						
+					</p:commandButton>
+					<p:commandButton value="Cancelar"
+						oncomplete="PF('dialogProduto').hide();" />
+
+				</f:facet>
+				
+				<h:form id="formulario">
+
+		<p:dataTable id="tabelaProduto"
+			emptyMessage="Nenhum registro encontrado." paginator="false"
+			value="#{pedidoBean.produtos}" var="produtoVar" rows="6"
+			style="margin-top: 10px" paginatorAlwaysVisible="false"
+			paginatorPosition="bottom">
+
+				
+				<p:column headerText="Descrição" filterBy="#{produtoVar.descricao}"
+					sortBy="#{produtoVar.descricao}"
+					style="width:40%" >
+
+					<h:outputText value="#{produtoVar.descricao}" />
+				</p:column>
+
+				<p:column headerText="Quantidade"
+					sortBy="#{produtoVar.quantidadeEstoque}"
+					style="width:20%">
+					<h:outputText value="#{produtoVar.quantidadeEstoque}" />
+				</p:column>
+
+				<p:column headerText="Preço" sortBy="#{produtoVar.valorUnitario}"
+				style="width:20%">
+					<h:outputText value="#{produtoVar.valorUnitario}">
+						<f:convertNumber locale="pt_BR" minFractionDigits="2" />
+					</h:outputText>
+				</p:column>
+
+
+				<p:column headerText="Opções"
+				style="width:15%">
+					<p:commandButton icon="ui-icon-plus"
+						actionListener="#{pedidoBean.adcionar}"
+						update=":frmCadastro:tabItens:frmItens:tabelaCesta :frmCadastro:pnlTotal">
+						<f:attribute name="produtoSelecionado" value="#{produtoVar}" />
+					</p:commandButton>
+				</p:column>
+		</p:dataTable>
+
+
+	</h:form>
+				
+			</p:dialog>
+		
+
+	</ui:define>
+</ui:composition>

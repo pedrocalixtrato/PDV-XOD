@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:form>
+		<p:panelMenu toggleable="true">
+
+			<p:submenu label="Cadastros">
+
+				<p:menuitem value="Clientes"
+					outcome="/pages/cliente/CadastroCliente.xhtml" icon="ui-icon-plus" />
+				<p:menuitem value="Usuários" icon="ui-icon-plus" />
+				
+				<p:menuitem value="Categorias" icon="ui-icon-plus" />
+				<p:menuitem value="Produtos"
+					outcome="/pages/produto/CadastroProduto.xhtml" icon="ui-icon-plus" />
+				<p:menuitem value="Sair"
+					url="/j_spring_security_logout" icon="ui-icon-plus" />
+
+			</p:submenu>
+			 
+
+			<p:submenu label="Pedidos">
+				<p:menuitem value="Venda" icon="ui-icon-plus" 
+				outcome="/pages/pedidos/CadastroPedido.xhtml"/>
+				<p:menuitem value="Rel.Vendas" icon="ui-icon-search" />
+			</p:submenu>
+
+			<p:submenu label="Financeiro">
+
+				<p:menuitem value="Contas/Pagar"
+					outcome="/pages/contasAPagar/CadastroContasP.xhtml"
+					icon="ui-icon-plus" />
+				<p:menuitem value="Rel.Contas/Pagar"
+					outcome="/pages/contasAPagar/PesquisaContasP.xhtml"
+					icon="ui-icon-search" />
+
+			</p:submenu>
+
+			<p:submenu label="Pesquisas">
+				<p:menuitem value="Clientes"
+					outcome="/pages/cliente/PesquisaClientes.xhtml"
+					icon="ui-icon-search" />
+				<p:menuitem value="Usuários" icon="ui-icon-search" />
+				
+				<p:menuitem value="Categorias" icon="ui-icon-search" />
+				<p:menuitem value="Produtos"
+					outcome="/pages/produto/PesquisaProdutos.xhtml"
+					icon="ui-icon-search" />
+			</p:submenu>
+			
+			<p:submenu label="Fiscal">
+
+				<p:menuitem value="Contas/Pagar"
+					outcome="/pages/contasAPagar/CadastroContasP.xhtml"
+					icon="ui-icon-plus" />
+				<p:menuitem value="Rel.Contas/Pagar"
+					outcome="/pages/contasAPagar/PesquisaContasP.xhtml"
+					icon="ui-icon-search" />
+
+			</p:submenu>
+		</p:panelMenu>
+	</h:form>
+
+</ui:composition>

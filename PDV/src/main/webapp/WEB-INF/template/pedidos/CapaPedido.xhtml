@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t2ti="http://java.sun.com/jsf/composite/t2ti">
+
+	<p:panelGrid columns="4" style="width: 100%; margin-top: 20px"
+		columnClasses="rotulo, campo, rotulo, campo">
+
+
+		<p:outputLabel value="Numero Pedido" for="cod" />
+		<p:inputText id="cod" size="5" maxlength="10" styleClass="moeda"
+			value="#{pedidoBean.pedido.id}" readonly="true" />
+
+
+
+		<p:outputLabel value="Data" />
+		<h:outputText value="#{pedidoBean.pedido.dataCriacao}">
+			<f:convertDateTime pattern="dd/MM/yyyy HH:mm" locale="pt_BR"
+				timeZone="GMT-3" />
+		</h:outputText>
+
+
+		<p:outputLabel value="Cliente" />
+		<p:selectOneMenu value="#{pedidoBean.pedido.cliente}" filter="true"
+			converter="omnifaces.SelectItemsConverter">
+			<f:selectItem itemLabel="Selecione um cliente"
+				noSelectionOption="true" />
+			<f:selectItems value="#{pedidoBean.clientes}" var="clienteVar"
+				itemValue="#{clienteVar}" itemLabel="#{clienteVar.nome}" />
+		</p:selectOneMenu>
+
+
+		<p:outputLabel value="Forma de pagamento" for="formaPagamento" />
+		<p:selectOneMenu id="formaPagamento"
+			value="#{pedidoBean.pedido.formaPagamento}">
+			<f:selectItem itemLabel="Selecione" />
+			<f:selectItems value="#{pedidoBean.formaPagamento}"
+				var="formaPagamentoVar" itemValue="#{formaPagamentoVar}"
+				itemLabel="#{formaPagamentoVar.descricao}" />
+		</p:selectOneMenu>
+
+	</p:panelGrid>
+
+	<h3></h3>
+
+	
+	
+
+</ui:composition>

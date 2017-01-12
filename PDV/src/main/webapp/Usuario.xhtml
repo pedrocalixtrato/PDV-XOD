@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="titulo">Cadastro de Usuario</ui:insert></title>
+        <h:outputStylesheet library="css" name="sistema.css" />
+	</h:head>
+
+	<h:body>
+		<header>
+			<div>
+				<h:link>
+					<h:graphicImage library="images" name="logo-dotcompany.png" />
+				</h:link>
+			</div>
+		</header>
+	</h:body>
+	
+	<h1>Novo Usuario</h1>
+    	
+    	<h:form>
+    	
+    	<p:messages id="msg" autoUpdate="true" closable="true" />
+    	
+    	<p:toolbar style="margin-top: 20px">
+    		<p:toolbarGroup>
+    			<p:button value="Novo" />
+    			<p:commandButton value="Salvar" id="botaoSalvar"
+    							actionListener="#{usuarioBean.salvar()}"
+    							update="@form"/>
+    		</p:toolbarGroup>
+    		<p:toolbarGroup align="right">
+    			<p:button value="Voltar" outcome="/Login.xhtml"/>
+    		</p:toolbarGroup>
+    	</p:toolbar>
+    	
+    	<p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
+    			columnClasses="rotulo, campo">
+    			    		
+    		<p:outputLabel value="Nome" for="nome"/>
+    		<p:inputText id="nome" size="60" maxlength="80"
+    					 value="#{usuarioBean.usuario.nome}"/>
+    		
+    		<p:outputLabel value="Email" />
+    		<p:inputText  size="60" maxlength="80"/>
+    		
+    		<p:outputLabel value="Telefone" />
+    		<p:inputText size="30"/>
+    		
+    		<p:outputLabel value="Senha" />
+    		<p:password size="30" value="#{usuarioBean.usuario.senha}"/>
+    		
+    		<p:outputLabel value="Filial" />
+    		<p:inputText size="5" />
+    	</p:panelGrid>
+    	</h:form>
+	
+	<p:separator style="margin-top: 20px"/>
+	
+	<footer>
+		Sistema Online NotaFiscalSuperSimples by DotCompany 
+		<a href="http://dotcompany.com.br" target="_blank">www.dotcompany.com.br</a>
+	</footer>
+
+</html>

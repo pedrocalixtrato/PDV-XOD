@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui">
+
+
+
+
+
+	<ui:define name="corpo">
+	
+		<f:metadata>
+<!-- 			<o:viewParam name="produtoCod" -->
+<!-- 				value="#{produtoBean.carregarCadastro}" />			 -->
+			<f:event listener="#{produtoBean.carregarCadastro}" type="preRenderView"/>
+			
+			
+		</f:metadata>
+		
+		
+		
+		<h:form id="frmCadastro">
+		
+
+			<h1>Novo Produto</h1>
+
+			<p:messages id="msg" autoUpdate="true" closable="true" />
+
+			<ui:include src="/pages/produto/BotoesCadastro.xhtml" />
+
+						
+
+			<p:panelGrid columns="4" style="width: 100%; margin-top: 20px"
+				columnClasses="rotulo, campo, rotulo, campo">
+
+				
+				<p:outputLabel value="Codigo" />
+				<p:inputText value="#{produtoBean.produto.codigo}" readonly="true" size="5" />
+
+				<p:outputLabel value="Descrição" />
+				<p:inputText value="#{produtoBean.produto.descricao}" />
+
+				<p:outputLabel value="Preço de venda" />
+				<p:inputText value="#{produtoBean.produto.valorUnitario}"
+							 styleClass="moeda" />
+
+				<p:outputLabel value="Preço de custo" />
+				<p:inputText value="#{produtoBean.produto.valorCusto}"
+							 styleClass="moeda" />
+				
+				<p:outputLabel value="Quantidade" />
+				<p:inputText value="#{produtoBean.produto.quantidadeEstoque}" />
+
+				<p:outputLabel value="Unidade" />
+				<p:selectOneMenu value="#{produtoBean.produto.unidade}">
+					<f:selectItem itemLabel="Selecione a unidade" />
+					<f:selectItems value="#{produtoBean.unidades}" var="unVar"
+						itemLabel="#{unVar}" itemValue="#{unVar}" />
+
+				</p:selectOneMenu>
+
+
+			</p:panelGrid>
+
+			<p:tabView style="margin-top: 20px">
+				<p:tab title="Dados Fiscais">
+					<p:panelGrid columns="4"
+						columnClasses="rotulo, campo, rotulo, campo">
+
+						<p:outputLabel value="Cod. NCM" />
+						<h:inputText size="20" value="#{produtoBean.produto.ncm}" />
+
+						<p:outputLabel value="CST" />
+						<h:inputText value="#{produtoBean.produto.cst}" />					
+
+
+					</p:panelGrid>
+				</p:tab>
+				<p:tab title="Complemento">
+
+					<p:panelGrid columns="4"
+						columnClasses="rotulo, campo, rotulo, campo">
+
+
+						<p:outputLabel value="Aplicação" />
+						<h:inputText size="20" />
+
+						<p:outputLabel value="Especificação" />
+						<h:inputText size="20"  />
+
+
+
+					</p:panelGrid>
+
+				</p:tab>
+				<p:tab title="Detalhamento">
+
+				</p:tab>
+			</p:tabView>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>

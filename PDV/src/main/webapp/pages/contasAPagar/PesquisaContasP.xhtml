@@ -1,0 +1,103 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Pesquisa de ContasAPagar</ui:define>
+
+	<ui:define name="corpo">
+
+
+		<h1>Pesquisa de Contas a pagar</h1>
+
+		<h:form id="frmPesquisa">
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+
+			<p:toolbar style="margin-top: 20px" id="toolb">
+				<p:toolbarGroup>
+					<p:button value="Novo" id="botaoNovo"
+						outcome="/pages/contasAPagar/CadastroContasP.xhtml" />
+					<p:separator />
+
+					<p:inputText />
+
+					<p:commandButton value="Pesquisar"
+						actionListener="#{contasAPagarBean.filtrar}" update="contasTable" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<h:panelGrid columns="2" id="painel" style="width: 100%"
+				columnClasses="rotulo, campo">
+				<p:outputLabel value="Data Inicial" for="dataLanc" />
+				<p:calendar id="dataLanc" size="10"
+					value="#{contasAPagarBean.filtro.dataInicial}" pattern="dd/MM/yyyy" />
+
+				<p:outputLabel value="Data final" />
+				<p:calendar size="10" value="#{contasAPagarBean.filtro.dataFinal}"
+					pattern="dd/MM/yyyy" />
+
+			</h:panelGrid>
+
+
+			<p:dataTable id="contasTable"
+				value="#{contasAPagarBean.contasVencidas}" var="contasVar"
+				style="margin-top: 20px" emptyMessage="Nenhum registro encontrado."
+				rows="20" paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom">
+				
+					<f:facet name="footer">
+						<p:outputLabel value="Total: " />
+						<h:outputText value="R$ #{contasAPagarBean.somarTotal}" />
+					</f:facet>
+				
+				<p:column headerText="Código"
+					style="text-align: center; width: 100px">
+					<h:outputText value="#{contasVar.codigo}" />
+				</p:column>
+				<p:column headerText="Fornecedor" filterBy="#{contasVar.fornecedor}">
+					<h:outputText value="#{contasVar.fornecedor}" />
+				</p:column>
+
+				<p:column headerText="Preço">
+					<h:outputText value="R$ #{contasVar.valor}" />
+				</p:column>
+
+				<p:column headerText="Status">
+					<h:outputText value="#{contasVar.tipo}" />
+				</p:column>
+
+
+				<p:column headerText="Vencimento">
+					<h:outputText value="#{contasVar.data}" />
+				</p:column>
+
+
+
+				<p:column style="width: 100px; text-align: center">
+					<p:button icon="ui-icon-pencil" title="Editar"
+						outcome="/pages/produto/CadastroProduto.xhtml">
+						<f:param name="produtoCod" value="#{produtoVar.codigo}" />
+						<f:attribute value="#{produtoVar}" name="produtoSelecionado" />
+					</p:button>
+					<p:commandButton icon="ui-icon-trash" title="Excluir"
+						process="@this" oncomplete="PF('confirmacaoExclusao').show()"
+						update="@form" actionListener="#{produtoBean.excluir}">
+						<p:confirm header="Confirmação"
+							message="Deseja excluir este cadastro ?" icon="ui-icon-alert" />
+						<f:attribute value="#{produtoVar}" name="produtoSelecionado" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+			<p:confirmDialog global="true">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
+					update="@form" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+		</h:form>
+	</ui:define>
+</ui:composition>

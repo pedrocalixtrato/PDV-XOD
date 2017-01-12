@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+	<p:toolbar style="margin-top: 15px">
+  		<p:toolbarGroup>
+  			<p:button value="Novo" />
+  			<p:commandButton value="Salvar" actionListener="#{clienteBean.salvar}" update="@form"/>
+  		</p:toolbarGroup>
+  		
+  		<p:toolbarGroup align="right">
+  			
+<!--   			<p:commandButton value="Cancelar" /> -->
+  			<p:commandButton value="Imprimir" />
+  			
+  			<p:separator/>
+  		
+  			<p:button value="Pesquisa" outcome="/pages/cliente/PesquisaClientes.xhtml"  />
+  		</p:toolbarGroup>
+  	</p:toolbar>
+  	
+</ui:composition>
