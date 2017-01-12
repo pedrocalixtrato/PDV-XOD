@@ -51,6 +51,7 @@ public class PesquisaProdutoBean implements Serializable {
 	public void buscar(){
 			
 //		produtos = produtoDAO.porDesc(produto.getCodUsuario(Long.parseLong(getSeguranca().getIDUsuario())));
+		//teste
 //		this.produtos =  produtoDAO.filtrar(produto, "codUsuario");
 		
 		
