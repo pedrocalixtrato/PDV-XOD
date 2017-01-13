@@ -49,10 +49,12 @@ public class PesquisaProdutoBean implements Serializable {
 	}
 	
 	public void buscar(){
-			
-//		produtos = produtoDAO.porDesc(produto.getCodUsuario(Long.parseLong(getSeguranca().getIDUsuario())));
-		//teste
-//		this.produtos =  produtoDAO.filtrar(produto, "codUsuario");
+		
+	
+	
+	produto.setCodUsuario(getSeguranca().getIDUsuario());	 
+	//produtos = produtoDAO.porDesc(produto.getCodUsuario());	
+	this.produtos =  produtoDAO.filtrar(produto, "codUsuario");
 		
 		
 	}
@@ -83,7 +85,9 @@ public class PesquisaProdutoBean implements Serializable {
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
-	public Seguranca getSeguranca() {
+	public Seguranca getSeguranca() {if(seguranca == null){
+		seguranca = new Seguranca();
+	}
 		return seguranca;
 	}
 	public void setSeguranca(Seguranca seguranca) {

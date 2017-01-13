@@ -4,18 +4,20 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
 
-	<p:toolbar style="margin-top: 20px">
+	<p:toolbar style="margin-top: 50px;color:#FFFFFF;" >
   		<p:toolbarGroup>
-  			<p:button value="Novo" />
+<!--   			<p:button value="Novo" /> -->
   			<p:commandButton value="Salvar" actionListener="#{produtoBean.salvar}" update="@form"/>
   		</p:toolbarGroup>
   		
   		<p:toolbarGroup align="right">
   			
   			<p:commandButton value="Cancelar" />
-  			<p:commandButton value="Imprimir" />
+<!--   			<p:commandButton value="Imprimir" /> -->
   			
   			<p:separator/>
+  			
+  			
   		
   			<p:button value="Pesquisa" outcome="/pages/produto/PesquisaProdutos.xhtml"  />
   		</p:toolbarGroup>

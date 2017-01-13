@@ -31,27 +31,30 @@
 
 			<p:messages id="msg" autoUpdate="true" closable="true" />
 
-			<ui:include src="/pages/produto/BotoesCadastro.xhtml" />
+			
 
-						
-
-			<p:panelGrid columns="4" style="width: 100%; margin-top: 20px"
-				columnClasses="rotulo, campo, rotulo, campo">
+				<p:tabView style="margin-top: 20px"> 
+				
+				<p:tab title="Dados Base">
+				
+					<p:panelGrid columns="4" style="width: 100%; margin-top: 20px"
+				columnClasses="rotulo, campo, rotulo, campo"
+				>
 
 				
 				<p:outputLabel value="Codigo" />
-				<p:inputText value="#{produtoBean.produto.codigo}" readonly="true" size="5" />
+				<p:inputText value="#{produtoBean.produto.codigo}" disabled="true" readonly="true" size="5" />
 
 				<p:outputLabel value="Descrição" />
 				<p:inputText value="#{produtoBean.produto.descricao}" />
 
 				<p:outputLabel value="Preço de venda" />
 				<p:inputText value="#{produtoBean.produto.valorUnitario}"
-							 styleClass="moeda" />
+							 />
 
 				<p:outputLabel value="Preço de custo" />
 				<p:inputText value="#{produtoBean.produto.valorCusto}"
-							 styleClass="moeda" />
+							  />
 				
 				<p:outputLabel value="Quantidade" />
 				<p:inputText value="#{produtoBean.produto.quantidadeEstoque}" />
@@ -67,10 +70,14 @@
 
 			</p:panelGrid>
 
-			<p:tabView style="margin-top: 20px">
+			
+
+				</p:tab>
+				
 				<p:tab title="Dados Fiscais">
-					<p:panelGrid columns="4"
-						columnClasses="rotulo, campo, rotulo, campo">
+					<h:panelGrid columns="4"
+						columnClasses="rotulo, campo, rotulo, campo"
+						>
 
 						<p:outputLabel value="Cod. NCM" />
 						<h:inputText size="20" value="#{produtoBean.produto.ncm}" />
@@ -79,7 +86,7 @@
 						<h:inputText value="#{produtoBean.produto.cst}" />					
 
 
-					</p:panelGrid>
+					</h:panelGrid>
 				</p:tab>
 				<p:tab title="Complemento">
 
@@ -101,7 +108,22 @@
 				<p:tab title="Detalhamento">
 
 				</p:tab>
-			</p:tabView>
+			</p:tabView>	
+			
+			<h:form id="frm" prependId="false">
+    		
+    		 <p:panelGrid columns="2" styleClass="grid-login" style="width: 100%;">	    				
+    				
+    				<h:panelGroup>    				
+	    				<p:commandButton value="Salvar" actionListener="#{produtoBean.salvar}" update="@form"/>
+	    				<p:button value="Voltar" outcome="/Home.xhtml" style="margin-left: 780px"  />
+	    				<p:button value="Pesquisar" outcome="/pages/produto/PesquisaProdutos.xhtml" style="margin-left: 10px"  />
+	    			</h:panelGroup>
+    				
+    			</p:panelGrid>
+    		</h:form>
+
+<!-- 			<ui:include src="/pages/produto/BotoesCadastro.xhtml" /> -->
 
 		</h:form>
 	</ui:define>

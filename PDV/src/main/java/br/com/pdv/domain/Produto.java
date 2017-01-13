@@ -29,7 +29,7 @@ public class Produto {
 	private String ncm;
 	private String cst;
 	
-	@Column(name = "GRA_CODIGO")
+	
 	private Long codUsuario;
 
 	@Id
@@ -149,4 +149,5 @@ public class Produto {
 		return String.format("%s[id=%d]", getClass().getSimpleName(), getCodigo());
 	}
 
+	
 }

@@ -16,6 +16,7 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.pdv.dao.GenericoDAO;
+import br.com.pdv.security.Seguranca;
 
 public class HibernateGenericDAO<T, ID extends Serializable> implements GenericoDAO<T, ID> {
 
@@ -23,7 +24,7 @@ public class HibernateGenericDAO<T, ID extends Serializable> implements Generico
 	private EntityManager em;
 
 	private Class<T> classeEntidade;
-
+	
 	@Resource
 	private UserTransaction transaction;
 
@@ -82,7 +83,7 @@ public class HibernateGenericDAO<T, ID extends Serializable> implements Generico
 				try {
 					Object valor = PropertyUtils.getProperty(entidade, propriedade);
 					if (valor != null) {
-						if (valor instanceof String) {
+						if (valor instanceof String) {							
 							criteria.add(Restrictions.ilike(propriedade, (String) valor, MatchMode.ANYWHERE));
 
 						} else {
@@ -110,5 +111,8 @@ public class HibernateGenericDAO<T, ID extends Serializable> implements Generico
 		return criteria.setCacheable(true).list();
 
 	}
+
+	
+	
 
 }

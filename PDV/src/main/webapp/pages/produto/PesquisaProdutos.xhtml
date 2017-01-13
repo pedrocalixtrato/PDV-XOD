@@ -21,7 +21,7 @@
 						outcome="/pages/produto/CadastroProduto.xhtml" />
 						<p:separator/>
 
-					<p:inputText value="#{pesquisaProdutoBean.produto.codUsuario}"/>
+					<p:inputText style="display:none" value="#{pesquisaProdutoBean.produto.codUsuario}"/>
 
 					<p:commandButton value="Pesquisar"
 						actionListener="#{pesquisaProdutoBean.buscar()}" update="@form" />
