@@ -30,8 +30,9 @@
 		<!-- tema do prime faces -->
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
-		<param-value>home</param-value>
+		<param-value>home</param-value>		
 	</context-param>
+<!-- 	aristo -->
 
 	
 	<servlet>
