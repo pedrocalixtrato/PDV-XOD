@@ -11,20 +11,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
 @Table(name = "PRODUTO")
 public class Produto {
-
-	private Integer codigo;
+	
+	private Long codigo;
 	private String descricao;
-	private Integer valorUnitario;
-	private Integer valorCusto;
-	private Integer quantidadeEstoque;
+	private BigDecimal valorUnitario;
+	private BigDecimal valorCusto;
+	private BigDecimal quantidadeEstoque;
 	private Unidades unidade;
 	private String ncm;
 	private String cst;
@@ -33,18 +38,20 @@ public class Produto {
 	private Long codUsuario;
 
 	@Id
-	@Column(name = "PRO_CODIGO")
-	@SequenceGenerator(name = "id_sequence_produto", sequenceName = "HIB_SEQ")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence_produto")
-	public Integer getCodigo() {
+	@Column(name = "PRO_CODIGO")	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Long getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(Integer codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 
 	@Column(name = "PRO_NOME")
+	@NotBlank 
+	@NotEmpty(message = "O campo nome é obrigatorio")
+	@Size(max = 80)	
 	public String getDescricao() {
 		return descricao;
 	}
@@ -54,25 +61,25 @@ public class Produto {
 	}
 
 	@Column(name = "PRO_VALOR")
-	public Integer getValorUnitario() {
+	public BigDecimal getValorUnitario() {
 		return valorUnitario;
 	}
 
-	public void setValorUnitario(Integer valorUnitario) {
+	public void setValorUnitario(BigDecimal valorUnitario) {
 		this.valorUnitario = valorUnitario;
 	}
 
 	@Column(name = "QUANTIDADEESTOQUE")
-	public Integer getQuantidadeEstoque() {
+	public BigDecimal getQuantidadeEstoque() {
 		return quantidadeEstoque;
 	}
 
-	public void setQuantidadeEstoque(Integer quantidadeEstoque) {
+	public void setQuantidadeEstoque(BigDecimal quantidadeEstoque) {
 		this.quantidadeEstoque = quantidadeEstoque;
 	}
 
 	@Column(name = "VALORCUSTO")
-	public void setValorCusto(Integer valorCusto) {
+	public void setValorCusto(BigDecimal valorCusto) {
 		this.valorCusto = valorCusto;
 	}
 
@@ -104,7 +111,7 @@ public class Produto {
 		this.cst = cst;
 	}
 
-	public Integer getValorCusto() {
+	public BigDecimal getValorCusto() {
 		return valorCusto;
 	}
 	

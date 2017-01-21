@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -35,12 +37,12 @@ public class Usuario implements Serializable {
 	private List<Grupo> grupos = new ArrayList<>();
 	
 	@Id  
-    @Column(name = "ID")
-	@SequenceGenerator(name="id_sequence_usuario",sequenceName="HIB_SEQ")
-	@GeneratedValue( strategy=GenerationType.SEQUENCE, generator = "id_sequence_usuario")
+    @Column(name = "ID")	
+	@GeneratedValue( strategy=GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -49,6 +51,8 @@ public class Usuario implements Serializable {
 	public String getNome() {
 		return nome;
 	}
+	
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -68,17 +72,14 @@ public class Usuario implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinTable(name = "user_grupo", joinColumns = @JoinColumn(name="usuario_id"),
-			inverseJoinColumns = @JoinColumn(name = "grupo_id"))
+		
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER )
 	public List<Grupo> getGrupos() {
 		return grupos;
 	}
 	public void setGrupos(List<Grupo> grupos) {
 		this.grupos = grupos;
 	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

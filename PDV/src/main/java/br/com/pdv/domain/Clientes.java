@@ -11,20 +11,26 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.context.annotation.Primary;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="CLIENTES")
+@Table(name="CLIENTE")
 public class Clientes implements Serializable {
 	
 	@Id  
+	@PrimaryKeyJoinColumn
     @Column(name = "CLI_CODIGO")
 	@SequenceGenerator(name="id_sequence",sequenceName="HIB_SEQ")
-	@GeneratedValue( strategy=GenerationType.SEQUENCE, generator = "id_sequence")
-	private Integer codigo;
+	@GeneratedValue( strategy=GenerationType.IDENTITY)
+	private Long codigo;
 	@Column(name="CLI_RAZAO")
+	@NotNull
 	private String nome;
 	@Column(name="CLI_FANTASIA", nullable = false)
 	private String nomeFantasia;
@@ -69,10 +75,10 @@ public class Clientes implements Serializable {
 	
 	
 	
-	public Integer getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(Integer codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 	public String getNome() {

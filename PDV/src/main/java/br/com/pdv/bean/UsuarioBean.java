@@ -1,6 +1,7 @@
 package br.com.pdv.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -8,7 +9,9 @@ import javax.inject.Named;
 
 import org.omnifaces.util.Messages;
 
+import br.com.pdv.dao.GrupoDAO;
 import br.com.pdv.dao.UsuarioDAO;
+import br.com.pdv.domain.Grupo;
 import br.com.pdv.domain.Usuario;
 
 
@@ -18,14 +21,21 @@ import br.com.pdv.domain.Usuario;
 public class UsuarioBean implements Serializable {
 	
 	private Usuario usuario;
+	private List<Grupo> grupos;
+	private Grupo grupo;
 	
 	@Inject
 	private UsuarioDAO usuarioDAO;
+	@Inject
+	private GrupoDAO grupoDAO;
 	
 	
 	public void init(){
 		usuario = new Usuario();
+		grupos = grupoDAO.listar(grupo);
 	}
+	
+	
 	
 	public void salvar(){
 		
@@ -52,6 +62,32 @@ public class UsuarioBean implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+
+
+	public List<Grupo> getGrupos() {
+		return grupos;
+	}
+
+
+
+	public void setGrupos(List<Grupo> grupos) {
+		this.grupos = grupos;
+	}
+
+
+
+	public Grupo getGrupo() {
+		return grupo;
+	}
+
+
+
+	public void setGrupo(Grupo grupo) {
+		this.grupo = grupo;
+	}
+	
+	
 	
 	
 	

@@ -20,16 +20,20 @@ public class AppUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		
 		UsuarioDAO usuarios = CDIServiceLocator.getBean(UsuarioDAO.class);
 		Usuario usuario = usuarios.porEmail(email);
 		
 		UsuarioSistema user = null;
-		
+		try{
 		if (usuario != null) {
 			user = new UsuarioSistema(usuario, getGrupos(usuario));
 		}
-		
+		}catch(RuntimeException e){
+			e.printStackTrace();
+		}
 		return user;
+		
 	}
 
 	private Collection<? extends GrantedAuthority> getGrupos(Usuario usuario) {

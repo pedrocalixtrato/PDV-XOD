@@ -20,10 +20,8 @@ public class Grupo implements Serializable {
 	private String nome;
 	private String descricao;
 
-	@Id  
-    @Column(name = "CODIGO")
-	@SequenceGenerator(name="id_sequence_grupo",sequenceName="HIB_SEQ")
-	@GeneratedValue( strategy=GenerationType.SEQUENCE, generator = "id_sequence_grupo")
+	@Id    
+	@GeneratedValue( strategy=GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}

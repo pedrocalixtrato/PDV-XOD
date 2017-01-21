@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 @RequestScoped
 public class EntityManagerProducer {
 	
-	@PersistenceContext(unitName = "BirdDS")			
+	@PersistenceContext(unitName = "PdvDS")			
 	private EntityManager em;
 
 	@Produces

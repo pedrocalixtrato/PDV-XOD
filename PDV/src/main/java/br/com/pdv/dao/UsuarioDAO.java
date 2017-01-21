@@ -10,7 +10,7 @@ import br.com.pdv.dao.hibernate.HibernateGenericDAO;
 import br.com.pdv.domain.Usuario;
 
 @SuppressWarnings("serial")
-public class UsuarioDAO extends HibernateGenericDAO<Usuario, Integer> implements Serializable{
+public class UsuarioDAO extends HibernateGenericDAO<Usuario, Long> implements Serializable{
 	
 	@Inject
 	private EntityManager em;

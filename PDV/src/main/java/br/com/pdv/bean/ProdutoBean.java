@@ -113,7 +113,7 @@ public class ProdutoBean implements Serializable {
 		try {
 			String valor = FacesUtil.getParam("produtoCod");
 			if (valor != null) {
-				Integer codigo = Integer.parseInt(valor);
+				Long codigo = Long.parseLong(valor);
 
 				this.produto = produtoDAO.buscarPeloCodigo(codigo);
 			}

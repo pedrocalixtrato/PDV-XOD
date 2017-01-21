@@ -46,7 +46,9 @@
 				<p:inputText value="#{produtoBean.produto.codigo}" disabled="true" readonly="true" size="5" />
 
 				<p:outputLabel value="Descrição" />
-				<p:inputText value="#{produtoBean.produto.descricao}" />
+				<p:inputText value="#{produtoBean.produto.descricao}" >
+					<f:validateBean/>
+				</p:inputText>
 
 				<p:outputLabel value="Preço de venda" />
 				<p:inputText value="#{produtoBean.produto.valorUnitario}"
@@ -115,7 +117,7 @@
     		 <p:panelGrid columns="2" styleClass="grid-login" style="width: 100%;">	    				
     				
     				<h:panelGroup>    				
-	    				<p:commandButton value="Salvar" actionListener="#{produtoBean.salvar}" update="@form"/>
+	    				<p:commandButton value="Salvar" actionListener="#{produtoBean.salvar}" update=":frmCadastro @form"/>
 	    				<p:button value="Voltar" outcome="/Home.xhtml" style="margin-left: 780px"  />
 	    				<p:button value="Pesquisar" outcome="/pages/produto/PesquisaProdutos.xhtml" style="margin-left: 10px"  />
 	    			</h:panelGroup>

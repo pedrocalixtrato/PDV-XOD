@@ -10,7 +10,7 @@ import br.com.pdv.dao.hibernate.HibernateGenericDAO;
 import br.com.pdv.domain.Produto;
 
 @SuppressWarnings("serial")
-public class ProdutoDAO extends HibernateGenericDAO<Produto, Integer> implements Serializable {
+public class ProdutoDAO extends HibernateGenericDAO<Produto, Long> implements Serializable {
 	
 	@Inject
 	private EntityManager em;

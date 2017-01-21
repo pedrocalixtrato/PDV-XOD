@@ -17,11 +17,14 @@
         <p:outputLabel value="Vendedor" for="vendedor"/>
         <p:selectOneMenu id="vendedor">
             <f:selectItem itemLabel="Selecione" />
-            <f:selectItem itemLabel="João das Couves Júnior" />
+            <f:selectItems value="#{cadastroPedidoBean.vendedores}"  var="vendedorVar"
+            			   itemValue="#{vendedor}" itemLabel="#{vendedorVar.nome}"/> 
         </p:selectOneMenu>
         
         <p:outputLabel value="Cliente" for="cliente"/>
-        <p:autoComplete id="cliente" size="40" dropdown="true" />
+        <p:autoComplete id="cliente" size="40" dropdown="true"
+        	value="#{cadastroPedidoBean.pedido.cliente}" completeMethod="#{cadastroPedidoBean.completarCliente}" 
+        	var="clienteVar" itemLabel="#{clienteVar.nome}" itemValue="#{clienteVar}" forceSelection="true"/>
         
         <p:outputLabel value="Forma de pagamento" for="formaPagamento"/>
         <p:selectOneMenu id="formaPagamento">
@@ -30,7 +33,8 @@
         </p:selectOneMenu>
         
         <p:outputLabel value="Valor do frete" for="valorFrete"/>
-        <p:inputText id="valorFrete" size="10" maxlength="10" />
+        <p:inputText id="valorFrete" size="10" maxlength="10" 
+        			 value="#{cadastroPedidoBean.pedido.valorFrete}"/>
         
         <p:outputLabel value="Subtotal" style="font-weight: bold"/>
         <h:outputText value="R$ 0,00" style="font-weight: bold" id="subtotal" />
