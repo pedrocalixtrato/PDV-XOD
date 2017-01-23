@@ -7,7 +7,7 @@
 	<p:toolbar style="margin-top: 20px">
   		<p:toolbarGroup>
   			<p:commandButton value="Novo" action="#{pedidoBean.novo}" />
-  			<p:commandButton value="Salvar" actionListener="#{pedidoBean.salvar()}"
+  			<p:commandButton value="Salvar" actionListener="#{cadastroPedidoBean.salvar}"
   							 update="@form" />
   		</p:toolbarGroup>
   		
@@ -18,7 +18,7 @@
   			
   			<p:separator/>
   		
-  			<p:button value="Pesquisa" />
+  			<p:button value="Pesquisa" outcome="/pages/pedidos/PesquisaPedidos.xhtml" />
   		</p:toolbarGroup>
   	</p:toolbar>
   	

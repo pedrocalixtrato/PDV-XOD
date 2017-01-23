@@ -8,16 +8,16 @@
     <ui:define name="titulo">Pesquisa de pedidos</ui:define>
     
     <ui:define name="corpo">
-    	<h:form>
+    	<h:form id="frm">
 	    	<h1>Pesquisa de pedidos</h1>
 	    	
 	    	<p:toolbar style="margin-top: 20px">
 	    		<p:toolbarGroup>
-	    			<p:commandButton value="Pesquisar" action="#{pesquisaPedidosBean.pesquisar}"
-	    				update="@form" />
+	    			<p:commandButton value="Pesquisar" actionListener="#{pesquisaPedidosBean.pesquisar}"
+	    				update="frm:pedidosTable @form" />
 	    		</p:toolbarGroup>
 	    		<p:toolbarGroup align="right">
-	    			<p:button value="Novo" outcome="/pedidos/CadastroPedido" />
+	    			<p:button value="Novo" outcome="/pages/pedidos/CadastroPedido.xhtml" />
 	    		</p:toolbarGroup>
 	    	</p:toolbar>
 	    	
@@ -52,34 +52,34 @@
 	    		</p:selectManyCheckbox>
 	    	</p:panelGrid>
 	    	
-	    	<p:dataTable id="pedidosTable" value="#{pesquisaPedidosBean.pedidosFiltrados}" var="pedido"
+	    	<p:dataTable id="pedidosTable" value="#{pesquisaPedidosBean.pedidosFiltrados}" var="pedidoVar"
 		    		style="margin-top: 20px" emptyMessage="Nenhum pedido encontrado."
 		    		rows="20" paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
 	    		<p:column headerText="Número" style="text-align: center; width: 100px">
-	    			<h:outputText value="#{pedido.id}"/>
+	    			<h:outputText value="#{pedidoVar.id}"/>
 	    		</p:column>
 	    		<p:column headerText="Cliente">
-	    			<h:outputText value="#{pedido.cliente.nome}"/>
+	    			<h:outputText value="#{pedidoVar.cliente.nome}"/>
 	    		</p:column>
 	    		<p:column headerText="Vendedor">
-	    			<h:outputText value="#{pedido.vendedor.nome}"/>
+	    			<h:outputText value="#{pedidoVar.vendedor.nome}"/>
 	    		</p:column>
 	    		<p:column headerText="Data de criação" style="text-align: center; width: 140px">
-	    			<h:outputText value="#{pedido.dataCriacao}">
+	    			<h:outputText value="#{pedidoVar.dataCriacao}">
 	    				<f:convertDateTime pattern="dd/MM/yyyy" />
 	    			</h:outputText>
 	    		</p:column>
 	    		<p:column headerText="Valor total" style="text-align: right; width: 120px">
-	    			<h:outputText value="#{pedido.valorTotal}">
+	    			<h:outputText value="#{pedidoVar.valorTotal}">
 	    				<f:convertNumber type="currency"/>
 	    			</h:outputText>
 	    		</p:column>
 	    		<p:column headerText="Status" style="width: 100px">
-	    			<h:outputText value="#{pedido.status.descricao}"/>
+	    			<h:outputText value="#{pedidoVar.status.descricao}"/>
 	    		</p:column>
 	    		<p:column style="text-align: center; width: 50px">
-	    			<p:button icon="ui-icon-pencil" title="Editar" outcome="/pedidos/CadastroPedido">
-	    				<f:param name="pedido" value="#{pedido.id}" />
+	    			<p:button icon="ui-icon-pencil" title="Editar" outcome="/pages/pedidos/CadastroPedido.xhtml" >
+	    				<f:param name="pedido" value="#{pedidoVar.id}" />
 	    			</p:button>
 	    		</p:column>
 	    	</p:dataTable>

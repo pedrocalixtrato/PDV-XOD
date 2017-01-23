@@ -13,19 +13,16 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-import org.apache.axis2.databinding.types.soapencoding.Decimal;
+import br.com.pdv.Enum.FormaPagamento;
+import br.com.pdv.Enum.StatusPedido;
 
 
 @Entity
@@ -48,7 +45,7 @@ public class Pedido implements Serializable{
 	private List<ItemPedido> itens = new ArrayList<>();
 	
 	@Id		
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	public Long getId() {
 		return id;
 	}
@@ -68,7 +65,7 @@ public class Pedido implements Serializable{
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	public Date getDataEntrega() {
 		return dataEntrega;
 	}
@@ -120,13 +117,13 @@ public class Pedido implements Serializable{
 		this.cliente = cliente;
 	}
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "vendedor_id", nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "vendedor_id")
 	public Usuario getVendedor() {
 		return vendedor;
 	}
 
-	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY )
 	public List<ItemPedido> getItens() {
 		return itens;
 	}
@@ -176,12 +173,31 @@ public class Pedido implements Serializable{
 	
 	@Transient
 	public boolean isNovo() {
-		return getId() == null;
+		return getDataCriacao() == null;
 	}
 	
 	@Transient
 	public boolean isExistente() {
 		return !isNovo();
+	}
+	@Transient
+	public BigDecimal getValorSubTotal(){
+		
+		return this.getValorTotal().subtract(this.getValorFrete().add(this.getValorDesconto()));
+		
+	}
+	
+	public void recalcularValorTotal() {
+		BigDecimal total = BigDecimal.ZERO;
+		
+		total = total.add(this.getValorFrete()).subtract(this.getValorDesconto());
+		
+		for(ItemPedido item : this.getItens()){
+			if(item.getProduto() != null && item.getProduto().getCodigo() != null)
+			total = total.add(item.getValorTotal());
+		}
+		
+		this.setValorTotal(total);
 	}
 
 }

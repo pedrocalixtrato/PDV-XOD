@@ -17,9 +17,9 @@ public class ClienteDAO extends HibernateGenericDAO<Clientes, Long> implements S
 
 	
 	public List<Clientes> porNome(String nome) {
-		return this.em.createQuery("from Cliente " +
-				"where upper(CLI_RAZAO) like :CLI_RAZAO", Clientes.class)
-				.setParameter("CLI_RAZAO", nome.toUpperCase() + "%")
+		return this.em.createQuery("from Clientes " +
+				"where upper(nome) like :nome", Clientes.class)
+				.setParameter("nome", nome.toUpperCase() + "%")
 				.getResultList();
 	}
 

@@ -16,6 +16,7 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.pdv.dao.GenericoDAO;
+import br.com.pdv.domain.Pedido;
 import br.com.pdv.security.Seguranca;
 
 public class HibernateGenericDAO<T, ID extends Serializable> implements GenericoDAO<T, ID> {
@@ -43,7 +44,18 @@ public class HibernateGenericDAO<T, ID extends Serializable> implements Generico
 		
 	}
 	
-			
+	
+	public Pedido guardar(Pedido pedido){
+		try{
+		transaction.begin();		
+		em.merge(pedido);
+		transaction.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return pedido;
+		
+	}		
 		
 
 	@Override
@@ -57,6 +69,8 @@ public class HibernateGenericDAO<T, ID extends Serializable> implements Generico
 		}
 
 	}
+	
+	
 
 	public void excluir(ID id) {
 		try{			

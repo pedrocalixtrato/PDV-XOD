@@ -32,7 +32,7 @@ public class Clientes implements Serializable {
 	@Column(name="CLI_RAZAO")
 	@NotNull
 	private String nome;
-	@Column(name="CLI_FANTASIA", nullable = false)
+	@Column(name="CLI_FANTASIA")
 	private String nomeFantasia;
 	@Column(name="CLI_CPFCNPJ")
 	private String cpfCnpj;

@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Transient;
 
 @SuppressWarnings("serial")
 @Entity
@@ -97,6 +98,11 @@ public class ItemPedido implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+	@Transient
+	public BigDecimal getValorTotal() {
+		
+		return this.getValorParcial().multiply(this.getQuantidade());
 	}
 
 	

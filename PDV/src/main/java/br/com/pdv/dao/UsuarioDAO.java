@@ -1,6 +1,7 @@
 package br.com.pdv.dao;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -26,6 +27,12 @@ public class UsuarioDAO extends HibernateGenericDAO<Usuario, Long> implements Se
 		}
 		
 		return usuario;
+	}
+	
+	public List<Usuario> vendedores() {
+		// TODO filtrar apenas vendedores (por um grupo específico)
+		return this.em.createQuery("from Usuario", Usuario.class)
+				.getResultList();
 	}
 	
 
