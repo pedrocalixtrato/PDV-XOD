@@ -33,6 +33,7 @@ public class Produto {
 	private Unidades unidade;
 	private String ncm;
 	private String cst;
+	private String sku;
 	
 	
 	private Long codUsuario;
@@ -115,8 +116,15 @@ public class Produto {
 		return valorCusto;
 	}
 	
-	
 
+
+	public String getSku() {
+		return sku;
+	}
+
+	public void setSku(String sku) {
+		this.sku = sku;
+	}
 
 	public Long getCodUsuario() {
 		return codUsuario;

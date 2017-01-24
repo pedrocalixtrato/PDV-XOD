@@ -19,8 +19,8 @@ import javax.persistence.Transient;
 public class ItemPedido implements Serializable {
 
 	private Long id;
-	private BigDecimal quantidade ;
-	private BigDecimal valorParcial;
+	private Integer quantidade = 1;	
+	private BigDecimal valorUnitario = BigDecimal.ZERO;
 	private Produto produto;
 	private Pedido pedido;
 	
@@ -37,22 +37,13 @@ public class ItemPedido implements Serializable {
 		this.id = id;
 	}
 
-	
-
-	public BigDecimal getQuantidade() {
+		
+	public Integer getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(BigDecimal quantidade) {
+	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
-	}
-
-	public BigDecimal getValorParcial() {
-		return valorParcial;
-	}
-
-	public void setValorParcial(BigDecimal valorParcial) {
-		this.valorParcial = valorParcial;
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)	
@@ -65,7 +56,7 @@ public class ItemPedido implements Serializable {
 		this.produto = produto;
 	}
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "pedido_id", nullable = false)
 	public Pedido getPedido() {
 		return pedido;
@@ -73,6 +64,15 @@ public class ItemPedido implements Serializable {
 
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
+	}
+	
+
+	public BigDecimal getValorUnitario() {
+		return valorUnitario;
+	}
+
+	public void setValorUnitario(BigDecimal valorUnitario) {
+		this.valorUnitario = valorUnitario;
 	}
 
 	@Override
@@ -102,7 +102,12 @@ public class ItemPedido implements Serializable {
 	@Transient
 	public BigDecimal getValorTotal() {
 		
-		return this.getValorParcial().multiply(this.getQuantidade());
+		return this.getValorUnitario().multiply(new BigDecimal(this.getQuantidade()));	
+	}
+	
+	@Transient
+	public boolean isProdutoAssociado(){
+		return this.getProduto()!= null && this.getProduto().getCodigo() != null;
 	}
 
 	
