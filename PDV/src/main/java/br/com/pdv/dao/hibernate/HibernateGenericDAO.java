@@ -44,19 +44,19 @@ public class HibernateGenericDAO<T, ID extends Serializable> implements Generico
 	}
 	
 	
-	public Pedido guardar(Pedido pedido){
-		try{
-		transaction.begin();		
-		em.merge(pedido);
-		transaction.commit();
-		
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		
-		return pedido;
-		
-	}
+//	public Pedido guardar(Pedido pedido){
+//		try{
+//		transaction.begin();		
+//		em.merge(pedido);
+//		transaction.commit();
+//		
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}
+//		
+//		return pedido;
+//		
+//	}
 		
 
 	@Override

@@ -3,7 +3,7 @@ package br.com.pdv.dao;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.ejb.EJB;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;

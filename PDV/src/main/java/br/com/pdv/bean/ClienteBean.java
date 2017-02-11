@@ -3,7 +3,6 @@ package br.com.pdv.bean;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -11,6 +10,7 @@ import org.omnifaces.util.Messages;
 
 import br.com.pdv.dao.ClienteDAO;
 import br.com.pdv.domain.Cliente;
+import br.com.pdv.util.jsf.FacesUtil;
 
 @SuppressWarnings("serial")
 @Named
@@ -23,10 +23,12 @@ public class ClienteBean implements Serializable{
 	private ClienteDAO clienteDAO;
 	
 	
-	@PostConstruct
+	public ClienteBean(){
+		cliente = new Cliente();
+	}
+	
 	public void init(){
 		
-		cliente = new Cliente();
 		
 	}
 	

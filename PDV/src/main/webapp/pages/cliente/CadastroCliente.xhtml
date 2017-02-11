@@ -9,12 +9,15 @@
 	xmlns:o="http://omnifaces.org/ui">
 	
 	
-	
+
 
 <ui:define name="corpo">
 
 		
-		
+	<f:metadata>
+		<o:viewParam name="clienteCod" value="#{clienteBean.cliente}"/>
+    	<f:event listener="#{clienteBean.init()}" type="preRenderView"/> 
+    </f:metadata>
 		
 		<h:form id="frmCadastro">
 		

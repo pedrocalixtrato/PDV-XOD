@@ -23,7 +23,8 @@ import br.com.pdv.domain.Pedido;
 import br.com.pdv.filter.PedidoFilter;
 
 @SuppressWarnings("serial")
-public class PedidoDAO extends HibernateGenericDAO<Pedido, Long> implements Serializable{
+@Stateless
+public class PedidoDAO implements Serializable{
 	@PersistenceContext
 	private EntityManager em;
 	private UserTransaction transaction;
@@ -108,10 +109,14 @@ public class PedidoDAO extends HibernateGenericDAO<Pedido, Long> implements Seri
 		}
 		
 		
-//		public Pedido guardar(Pedido pedido){
-//					
-//			return this.em.merge(pedido);			
-//			
-//		}
+		public Pedido guardar(Pedido pedido){
+					
+			return this.em.merge(pedido);			
+			
+		}
+		
+		public Pedido buscarPeloCodigo(Long id) {
+			return this.em.find(Pedido.class, id);
+		}
 
 }

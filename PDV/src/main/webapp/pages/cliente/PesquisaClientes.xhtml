@@ -48,8 +48,8 @@
 				<p:column style="width: 100px; text-align: center">
 					<p:button icon="ui-icon-pencil" title="Editar"
 						outcome="/pages/cliente/CadastroCliente.xhtml" >
-						<f:param name="clienteCod" value="#{clienteVar.codigo}" />						
-<!-- 						<f:attribute value="#{clienteVar}" name="clienteSelecionado" /> -->
+						<f:param name="clienteCod" value="#{clienteVar.codigo}" />					
+
 					</p:button>
 					<p:commandButton icon="ui-icon-trash" title="Excluir"
 						process="@this" oncomplete="PF('confirmacaoExclusao').show()"
