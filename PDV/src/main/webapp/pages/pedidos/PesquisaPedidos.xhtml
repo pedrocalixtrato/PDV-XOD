@@ -13,8 +13,8 @@
 	    	
 	    	<p:toolbar style="margin-top: 20px">
 	    		<p:toolbarGroup>
-	    			<p:commandButton value="Pesquisar" actionListener="#{pesquisaPedidosBean.pesquisar}"
-	    				update="frm:pedidosTable @form" />
+	    			<p:commandButton value="Pesquisar" action="#{pesquisaPedidosBean.pesquisar}"
+	    				update="@form" />
 	    		</p:toolbarGroup>
 	    		<p:toolbarGroup align="right">
 	    			<p:button value="Novo" outcome="/pages/pedidos/CadastroPedido.xhtml" />
@@ -54,7 +54,7 @@
 	    	
 	    	<p:dataTable id="pedidosTable" value="#{pesquisaPedidosBean.pedidosFiltrados}" var="pedidoVar"
 		    		style="margin-top: 20px" emptyMessage="Nenhum pedido encontrado."
-		    		rows="20" paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
+		    		rows="10" paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
 	    		<p:column headerText="Número" style="text-align: center; width: 100px">
 	    			<h:outputText value="#{pedidoVar.id}"/>
 	    		</p:column>

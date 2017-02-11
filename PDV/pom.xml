@@ -14,9 +14,7 @@
 
 		<!-- Driver MySQL -->
 		<!-- <mysql.connector.version>5.1.35</mysql.connector.version> -->
-
-		<!-- Omnifaces -->
-		<omnifaces.version>2.1</omnifaces.version>
+		
 
 		<!-- Primefaces -->
 		<primefaces.version>5.2</primefaces.version>
@@ -114,7 +112,7 @@
 		<dependency>
 			<groupId>org.omnifaces</groupId>
 			<artifactId>omnifaces</artifactId>
-			<version>1.4.1</version>
+			<version>1.5</version>
 			<scope>compile</scope>
 		</dependency>	
 
@@ -158,7 +156,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>4.3.6.Final</version>
+			<version>5.2.6.Final</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -166,7 +164,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>4.3.6.Final</version>
+			<version>5.2.6.Final</version>
 			<scope>provided</scope>
 		</dependency>
           

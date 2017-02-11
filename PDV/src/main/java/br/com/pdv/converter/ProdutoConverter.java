@@ -6,14 +6,12 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 
 import br.com.pdv.dao.ProdutoDAO;
 import br.com.pdv.domain.Produto;
 import br.com.pdv.util.jpa.CDIServiceLocator;
 
-@SuppressWarnings("rawtypes")
+
 @FacesConverter(forClass = Produto.class)
 public class ProdutoConverter implements Converter {
 
@@ -40,7 +38,7 @@ public class ProdutoConverter implements Converter {
 		public String getAsString(FacesContext context, UIComponent component, Object value) {
 			if (value != null) {
 				Produto produto = (Produto) value;
-				return produto.getCodigo() == null ? null : produto.getCodigo().toString();
+				return produto.getId() == null ? null : produto.getId().toString();
 			}
 			
 			return "";

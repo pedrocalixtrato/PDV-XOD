@@ -66,7 +66,7 @@ public class ProdutoBean implements Serializable {
 		produto = (Produto) evento.getComponent().getAttributes().get("produtoSelecionado");
 
 		try {
-			produtoDAO.excluir(produto.getCodigo());
+			produtoDAO.excluir(produto.getId());
 			this.produtos = produtoDAO.listar(produto);
 			Messages.addGlobalInfo("Removido com sucesso!");
 

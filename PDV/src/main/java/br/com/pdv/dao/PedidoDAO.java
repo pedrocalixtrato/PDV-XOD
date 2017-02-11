@@ -3,14 +3,16 @@ package br.com.pdv.dao;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.inject.Inject;
-
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
+
 import org.hibernate.Session;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -22,7 +24,7 @@ import br.com.pdv.filter.PedidoFilter;
 
 @SuppressWarnings("serial")
 public class PedidoDAO extends HibernateGenericDAO<Pedido, Long> implements Serializable{
-	@Inject
+	@PersistenceContext
 	private EntityManager em;
 	private UserTransaction transaction;
 	
@@ -62,6 +64,7 @@ public class PedidoDAO extends HibernateGenericDAO<Pedido, Long> implements Seri
 			Session session = this.em.unwrap(Session.class);
 			
 			Criteria criteria = session.createCriteria(Pedido.class)
+					
 					// fazemos uma associação (join) com cliente e nomeamos como "c"
 					.createAlias("cliente", "c")
 					// fazemos uma associação (join) com vendedor e nomeamos como "v"
@@ -97,10 +100,18 @@ public class PedidoDAO extends HibernateGenericDAO<Pedido, Long> implements Seri
 			
 			if (filtro.getStatuses() != null && filtro.getStatuses().length > 0) {
 				// adicionamos uma restrição "in", passando um array de constantes da enum StatusPedido
+				
 				criteria.add(Restrictions.in("status", filtro.getStatuses()));
 			}
-			
+			//criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 			return criteria.addOrder(Order.asc("id")).list();
 		}
+		
+		
+//		public Pedido guardar(Pedido pedido){
+//					
+//			return this.em.merge(pedido);			
+//			
+//		}
 
 }

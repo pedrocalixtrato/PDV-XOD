@@ -1,67 +1,69 @@
 package br.com.pdv.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
+
+import br.com.pdv.service.NegocioException;
 
 @Entity
-@Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
+//@Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
 @Table(name = "PRODUTO")
-public class Produto {
-	
-	private Long codigo;
-	private String descricao;
-	private BigDecimal valorUnitario;
-	private BigDecimal valorCusto;
-	private BigDecimal quantidadeEstoque;
-	private Unidades unidade;
-	private String ncm;
-	private String cst;
+public class Produto implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Long id;
+	private String nome;
 	private String sku;
+	private BigDecimal valorUnitario;
+	private Integer quantidadeEstoque;
 	
 	
 	private Long codUsuario;
 
 	@Id
-	@Column(name = "PRO_CODIGO")	
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long getCodigo() {
-		return codigo;
+	@GeneratedValue
+	public Long getId() {
+		return id;
 	}
 
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	@Column(name = "PRO_NOME")
-	@NotBlank 
-	@NotEmpty(message = "O campo nome é obrigatorio")
-	@Size(max = 80)	
-	public String getDescricao() {
-		return descricao;
+	@NotBlank
+	@Size(max = 80)
+	@Column(nullable = false, length = 80)
+	public String getNome() {
+		return nome;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	@Column(name = "PRO_VALOR")
+	
+	@Column(length = 20, unique = true)
+	public String getSku() {
+		return sku;
+	}
+
+	public void setSku(String sku) {
+		this.sku = sku == null ? null : sku.toUpperCase();
+	}
+
+	@NotNull(message = "é obrigatório")
+	@Column(name="valor_unitario", nullable = false, precision = 10, scale = 2)
 	public BigDecimal getValorUnitario() {
 		return valorUnitario;
 	}
@@ -70,61 +72,17 @@ public class Produto {
 		this.valorUnitario = valorUnitario;
 	}
 
-	@Column(name = "QUANTIDADEESTOQUE")
-	public BigDecimal getQuantidadeEstoque() {
+	@NotNull
+	@Column(name="quantidade_estoque", nullable = false, length = 5)
+	public Integer getQuantidadeEstoque() {
 		return quantidadeEstoque;
 	}
 
-	public void setQuantidadeEstoque(BigDecimal quantidadeEstoque) {
+	public void setQuantidadeEstoque(Integer quantidadeEstoque) {
 		this.quantidadeEstoque = quantidadeEstoque;
 	}
-
-	@Column(name = "VALORCUSTO")
-	public void setValorCusto(BigDecimal valorCusto) {
-		this.valorCusto = valorCusto;
-	}
-
-	@Enumerated(EnumType.STRING)
-	@Column(name = "UNIDADE")
-	public Unidades getUnidade() {
-		return unidade;
-	}
-
-	public void setUnidade(Unidades unidade) {
-		this.unidade = unidade;
-	}
-
-	@Column(name = "NCM")
-	public String getNcm() {
-		return ncm;
-	}
-
-	public void setNcm(String ncm) {
-		this.ncm = ncm;
-	}
-
-	@Column(name = "CST")
-	public String getCst() {
-		return cst;
-	}
-
-	public void setCst(String cst) {
-		this.cst = cst;
-	}
-
-	public BigDecimal getValorCusto() {
-		return valorCusto;
-	}
 	
-
-
-	public String getSku() {
-		return sku;
-	}
-
-	public void setSku(String sku) {
-		this.sku = sku;
-	}
+	
 
 	public Long getCodUsuario() {
 		return codUsuario;
@@ -138,7 +96,7 @@ public class Produto {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -151,18 +109,29 @@ public class Produto {
 		if (getClass() != obj.getClass())
 			return false;
 		Produto other = (Produto) obj;
-		if (codigo == null) {
-			if (other.codigo != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!codigo.equals(other.codigo))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return String.format("%s[id=%d]", getClass().getSimpleName(), getCodigo());
+	public void baixarEstoque(Integer quantidade) {
+		int novaQuantidade = this.getQuantidadeEstoque() - quantidade;
+		
+		if (novaQuantidade < 0) {
+			throw new NegocioException("Não há disponibilidade no estoque de "
+					+ quantidade + " itens do produto " + this.getNome() + ".");
+		}
+		
+		setQuantidadeEstoque(novaQuantidade);
 	}
 
+	public void adicionarEstoque(Integer quantidade) {
+		this.setQuantidadeEstoque(getQuantidadeEstoque() + quantidade);
+		
+	}
+	
 	
 }

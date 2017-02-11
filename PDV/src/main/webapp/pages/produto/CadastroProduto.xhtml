@@ -32,21 +32,19 @@
 			<p:messages id="msg" autoUpdate="true" closable="true" />
 
 			
-
-				<p:tabView style="margin-top: 20px"> 
+			<ui:include src="/pages/produto/BotoesCadastro.xhtml" />
+			
 				
-				<p:tab title="Dados Base">
-				
-					<p:panelGrid columns="4" style="width: 100%; margin-top: 20px"
+				<p:panelGrid columns="4" style="width: 100%; margin-top: 20px"
 				columnClasses="rotulo, campo, rotulo, campo"
 				>
 
 				
 				<p:outputLabel value="Codigo" />
-				<p:inputText value="#{produtoBean.produto.codigo}" disabled="true" readonly="true" size="5" />
+				<p:inputText value="#{produtoBean.produto.id}" disabled="true" readonly="true" size="5" />
 
 				<p:outputLabel value="Descrição" />
-				<p:inputText value="#{produtoBean.produto.descricao}" >
+				<p:inputText value="#{produtoBean.produto.nome}" >
 					<f:validateBean/>
 				</p:inputText>
 
@@ -55,26 +53,23 @@
 							 />
 
 				<p:outputLabel value="Preço de custo" />
-				<p:inputText value="#{produtoBean.produto.valorCusto}"
-							  />
+				<p:inputText  />
 				
 				<p:outputLabel value="Quantidade" />
 				<p:inputText value="#{produtoBean.produto.quantidadeEstoque}" />
 
 				<p:outputLabel value="Unidade" />
-				<p:selectOneMenu value="#{produtoBean.produto.unidade}">
+				<p:selectOneMenu >
 					<f:selectItem itemLabel="Selecione a unidade" />
-					<f:selectItems value="#{produtoBean.unidades}" var="unVar"
-						itemLabel="#{unVar}" itemValue="#{unVar}" />
+					<f:selectItems />
 
 				</p:selectOneMenu>
 
 
 			</p:panelGrid>
-
-			
-
-				</p:tab>
+				
+				
+				<p:tabView style="margin-top: 20px"> 
 				
 				<p:tab title="Dados Fiscais">
 					<h:panelGrid columns="4"
@@ -82,10 +77,10 @@
 						>
 
 						<p:outputLabel value="Cod. NCM" />
-						<h:inputText size="20" value="#{produtoBean.produto.ncm}" />
+						<h:inputText size="20"  />
 
 						<p:outputLabel value="CST" />
-						<h:inputText value="#{produtoBean.produto.cst}" />					
+						<h:inputText  />					
 
 
 					</h:panelGrid>
@@ -112,20 +107,7 @@
 				</p:tab>
 			</p:tabView>	
 			
-			<h:form id="frm" prependId="false">
-    		
-    		 <p:panelGrid columns="2" styleClass="grid-login" style="width: 100%;">	    				
-    				
-    				<h:panelGroup>    				
-	    				<p:commandButton value="Salvar" actionListener="#{produtoBean.salvar}" update=":frmCadastro @form"/>
-	    				<p:button value="Voltar" outcome="/Home.xhtml" style="margin-left: 780px"  />
-	    				<p:button value="Pesquisar" outcome="/pages/produto/PesquisaProdutos.xhtml" style="margin-left: 10px"  />
-	    			</h:panelGroup>
-    				
-    			</p:panelGrid>
-    		</h:form>
 
-<!-- 			<ui:include src="/pages/produto/BotoesCadastro.xhtml" /> -->
 
 		</h:form>
 	</ui:define>

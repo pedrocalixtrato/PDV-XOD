@@ -10,7 +10,7 @@ import javax.inject.Named;
 import org.omnifaces.util.Messages;
 
 import br.com.pdv.dao.ClienteDAO;
-import br.com.pdv.domain.Clientes;
+import br.com.pdv.domain.Cliente;
 
 @SuppressWarnings("serial")
 @Named
@@ -18,7 +18,7 @@ import br.com.pdv.domain.Clientes;
 public class ClienteBean implements Serializable{
 	
 	
-	private Clientes cliente;
+	private Cliente cliente;
 	@Inject
 	private ClienteDAO clienteDAO;
 	
@@ -26,7 +26,7 @@ public class ClienteBean implements Serializable{
 	@PostConstruct
 	public void init(){
 		
-		cliente = new Clientes();
+		cliente = new Cliente();
 		
 	}
 	
@@ -44,11 +44,11 @@ public class ClienteBean implements Serializable{
 		
 	}
 
-	public Clientes getCliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(Clientes cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 

@@ -39,10 +39,10 @@
 				paginatorPosition="bottom">
 				<p:column headerText="Código"
 					style="text-align: center; width: 100px">
-					<h:outputText value="#{produtoVar.codigo}" />
+					<h:outputText value="#{produtoVar.id}" />
 				</p:column>
-				<p:column headerText="Descrição" filterBy="#{produtoVar.descricao}">
-					<h:outputText value="#{produtoVar.descricao}" />
+				<p:column headerText="Descrição" filterBy="#{produtoVar.nome}">
+					<h:outputText value="#{produtoVar.nome}" />
 				</p:column>
 
 				<p:column headerText="Preço">
@@ -55,7 +55,7 @@
 				
 				
 				<p:column headerText="PreçoCusto">
-					<h:outputText value="#{produtoVar.valorCusto}" />
+					<h:outputText  />
 				</p:column>
 				
 				
@@ -63,7 +63,7 @@
 				<p:column style="width: 100px; text-align: center">
 					<p:button icon="ui-icon-pencil" title="Editar"
 						outcome="/pages/produto/CadastroProduto.xhtml">
-						<f:param name="produtoCod" value="#{produtoVar.codigo}" />					
+						<f:param name="produtoCod" value="#{produtoVar.id}" />					
 						
 					</p:button>
 					<p:commandButton icon="ui-icon-trash" title="Excluir"

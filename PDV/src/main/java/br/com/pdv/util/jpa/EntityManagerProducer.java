@@ -17,6 +17,8 @@ public class EntityManagerProducer {
 	public EntityManager create() {
 		return this.em;
 	}
+	
+
 
 	
 	

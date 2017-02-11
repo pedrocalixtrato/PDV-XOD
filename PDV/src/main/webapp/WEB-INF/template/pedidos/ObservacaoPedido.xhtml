@@ -6,7 +6,7 @@
 
 	<h:panelGroup layout="block" style="padding-right: 10px">
 		<p:inputTextarea rows="10" style="width: 100%" value="#{cadastroPedidoBean.pedido.observacao}" 
-			/>
+			disabled="#{cadastroPedidoBean.pedido.naoAlteravel}"/>
 	</h:panelGroup>
   	
 </ui:composition>

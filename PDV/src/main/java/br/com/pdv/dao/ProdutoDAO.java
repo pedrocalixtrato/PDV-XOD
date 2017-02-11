@@ -3,9 +3,12 @@ package br.com.pdv.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
 
 import br.com.pdv.dao.hibernate.HibernateGenericDAO;
 import br.com.pdv.domain.Produto;
@@ -13,7 +16,7 @@ import br.com.pdv.domain.Produto;
 @SuppressWarnings("serial")
 public class ProdutoDAO extends HibernateGenericDAO<Produto, Long> implements Serializable {
 
-	@Inject
+	@PersistenceContext
 	private EntityManager em;
 
 	public List<Produto> porDesc(Long codUsuario) {
@@ -23,9 +26,9 @@ public class ProdutoDAO extends HibernateGenericDAO<Produto, Long> implements Se
 
 	/* consulta com JPQL */
 
-	public List<Produto> porNome(String descricao) {
-		return this.em.createQuery("from Produto where upper(descricao) like :descricao", Produto.class)
-				.setParameter("descricao", descricao.toUpperCase() + "%").getResultList();
+	public List<Produto> porNome(String nome) {
+		return this.em.createQuery("from Produto where upper(nome) like :nome", Produto.class)
+				.setParameter("nome", nome.toUpperCase() + "%").getResultList();
 	}
 
 	public Produto porSku(String sku) {

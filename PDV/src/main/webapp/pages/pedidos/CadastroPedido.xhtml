@@ -9,10 +9,10 @@
     
     <f:metadata>
     	<o:viewParam name="pedido" value="#{cadastroPedidoBean.pedido}"/>
-    	<f:event listener="#{cadastroPedidoBean.init}" type="preRenderView"/>
+    	<f:event listener="#{cadastroPedidoBean.inicializar()}" type="preRenderView"/>    	
     </f:metadata>
     
-    
+    <ui:define name="titulo">#{cadastroPedidoBean.editando ? "Edição de pedido" : "Novo pedido"}</ui:define>
     
     <ui:define name="corpo">
     	<h:form id="frmCadastro">

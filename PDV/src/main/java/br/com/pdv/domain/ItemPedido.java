@@ -3,32 +3,31 @@ package br.com.pdv.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
-@SuppressWarnings("serial")
 @Entity
+@Table(name = "item_pedido")
 public class ItemPedido implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+
 	private Long id;
-	private Integer quantidade = 1;	
+	private Integer quantidade = 1;
 	private BigDecimal valorUnitario = BigDecimal.ZERO;
 	private Produto produto;
 	private Pedido pedido;
-	
-	
-	
-	
-	@Id		
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+
+	@Id
+	@GeneratedValue
 	public Long getId() {
 		return id;
 	}
@@ -37,7 +36,7 @@ public class ItemPedido implements Serializable {
 		this.id = id;
 	}
 
-		
+	@Column(nullable = false, length = 3)
 	public Integer getQuantidade() {
 		return quantidade;
 	}
@@ -46,8 +45,17 @@ public class ItemPedido implements Serializable {
 		this.quantidade = quantidade;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)	
-	@JoinTable(name = "itens_produto")
+	@Column(name = "valor_unitario", nullable = false, precision = 10, scale = 2)
+	public BigDecimal getValorUnitario() {
+		return valorUnitario;
+	}
+
+	public void setValorUnitario(BigDecimal valorUnitario) {
+		this.valorUnitario = valorUnitario;
+	}
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "produto_id", nullable = false)
 	public Produto getProduto() {
 		return produto;
 	}
@@ -55,7 +63,7 @@ public class ItemPedido implements Serializable {
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
-	
+
 	@ManyToOne
 	@JoinColumn(name = "pedido_id", nullable = false)
 	public Pedido getPedido() {
@@ -64,15 +72,6 @@ public class ItemPedido implements Serializable {
 
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
-	}
-	
-
-	public BigDecimal getValorUnitario() {
-		return valorUnitario;
-	}
-
-	public void setValorUnitario(BigDecimal valorUnitario) {
-		this.valorUnitario = valorUnitario;
 	}
 
 	@Override
@@ -99,18 +98,26 @@ public class ItemPedido implements Serializable {
 			return false;
 		return true;
 	}
+
 	@Transient
 	public BigDecimal getValorTotal() {
-		
-		return this.getValorUnitario().multiply(new BigDecimal(this.getQuantidade()));	
+		return this.getValorUnitario().multiply(new BigDecimal(this.getQuantidade()));
 	}
 	
 	@Transient
-	public boolean isProdutoAssociado(){
-		return this.getProduto()!= null && this.getProduto().getCodigo() != null;
+	public boolean isProdutoAssociado() {
+		return this.getProduto() != null && this.getProduto().getId() != null;
 	}
-
 	
-		
+	@Transient
+	public boolean isEstoqueSuficiente() {
+		return this.getPedido().isEmitido() || this.getProduto().getId() == null 
+			|| this.getProduto().getQuantidadeEstoque() >= this.getQuantidade(); 
+	}
+	
+	@Transient
+	public boolean isEstoqueInsuficiente() {
+		return !this.isEstoqueSuficiente();
+	}
 
 }

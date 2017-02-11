@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Primary;
 @SuppressWarnings("serial")
 @Entity
 @Table(name="CLIENTE")
-public class Clientes implements Serializable {
+public class Cliente implements Serializable {
 	
 	@Id  
 	@PrimaryKeyJoinColumn

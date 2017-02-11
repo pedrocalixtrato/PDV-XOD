@@ -21,6 +21,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 
 @Entity
@@ -73,7 +75,8 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 		
-	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<Grupo> getGrupos() {
 		return grupos;
 	}

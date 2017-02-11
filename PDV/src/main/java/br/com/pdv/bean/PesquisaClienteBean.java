@@ -8,15 +8,15 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.pdv.dao.ClienteDAO;
-import br.com.pdv.domain.Clientes;
+import br.com.pdv.domain.Cliente;
 
 @Named
 @ViewScoped
 @SuppressWarnings("serial")
 public class PesquisaClienteBean implements Serializable{
 
-	private List<Clientes> clientes;
-	private Clientes cliente;
+	private List<Cliente> clientes;
+	private Cliente cliente;
 	
 	
 	@Inject
@@ -31,22 +31,22 @@ public class PesquisaClienteBean implements Serializable{
 	}
 
 
-	public List<Clientes> getClientes() {
+	public List<Cliente> getClientes() {
 		return clientes;
 	}
 
 
-	public void setClientes(List<Clientes> clientes) {
+	public void setClientes(List<Cliente> clientes) {
 		this.clientes = clientes;
 	}
 
 
-	public Clientes getCliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
 
 
-	public void setCliente(Clientes cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 	

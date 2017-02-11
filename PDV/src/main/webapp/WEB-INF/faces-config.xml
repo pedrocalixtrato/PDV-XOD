@@ -7,6 +7,11 @@
     version="2.1">
 	
 	
+	<factory>
+		<exception-handler-factory>
+			br.com.pdv.util.jsf.JsfExceptionHandlerFactory
+		</exception-handler-factory>
+	</factory>
 	
 	<application>	
 		

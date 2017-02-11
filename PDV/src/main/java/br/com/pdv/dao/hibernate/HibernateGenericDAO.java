@@ -5,6 +5,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
@@ -17,8 +18,6 @@ import org.hibernate.criterion.Restrictions;
 
 import br.com.pdv.dao.GenericoDAO;
 import br.com.pdv.domain.Pedido;
-import br.com.pdv.security.Seguranca;
-
 public class HibernateGenericDAO<T, ID extends Serializable> implements GenericoDAO<T, ID> {
 
 	@PersistenceContext
@@ -50,12 +49,14 @@ public class HibernateGenericDAO<T, ID extends Serializable> implements Generico
 		transaction.begin();		
 		em.merge(pedido);
 		transaction.commit();
+		
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		
 		return pedido;
 		
-	}		
+	}
 		
 
 	@Override

@@ -3,9 +3,12 @@ package br.com.pdv.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
 
 import br.com.pdv.dao.hibernate.HibernateGenericDAO;
 import br.com.pdv.domain.Usuario;
@@ -13,7 +16,7 @@ import br.com.pdv.domain.Usuario;
 @SuppressWarnings("serial")
 public class UsuarioDAO extends HibernateGenericDAO<Usuario, Long> implements Serializable{
 	
-	@Inject
+	@PersistenceContext
 	private EntityManager em;
 	
 	public Usuario porEmail(String email) {
