@@ -1,0 +1,53 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+	<p:dataTable rowIndexVar="linha"  var="item" id="tabelaItens">
+		<p:column headerText="SKU" style="text-align: center; width: 100px">			
+			<h:outputText />			
+				<p:inputText size="8" >
+						<p:ajax event="change" process="@this"/>	 
+			</p:inputText>		 
+		</p:column>
+		<p:column headerText="Produto">
+			<h:outputText />
+			<p:autoComplete styleClass="produto-tabela" style="width: 100%">
+				<p:ajax event="itemSelect" />
+			</p:autoComplete>
+		</p:column>
+		<p:column headerText="Valor unitário" style="text-align: right; width: 120px">
+			<h:outputText >
+				<f:convertNumber type="currency"/>
+			</h:outputText>
+		</p:column>
+		<p:column headerText="Quantidade" style="text-align: center; width: 100px">
+			<p:inputText size="8" >
+				<p:ajax event="change" process="@this"/>
+			</p:inputText>
+		</p:column>
+		<p:column headerText="Estoque" style="text-align: center; width: 100px">
+			<h:outputText />				
+		</p:column>
+		<p:column headerText="Valor total" style="text-align: right; width: 100px">
+			<h:outputText  >
+				<f:convertNumber type="currency"/>
+			</h:outputText>
+		</p:column>
+		
+		<p:columnGroup type="footer">
+			<p:row>
+				<p:column colspan="5" footerText="Subtotal" style="text-align: right" />
+				<p:column style="text-align: right">
+					<f:facet name="footer">
+						<h:outputText >
+							<f:convertNumber type="currency"/>
+						</h:outputText>
+					</f:facet>
+				</p:column>
+			</p:row>
+		</p:columnGroup>
+	</p:dataTable>
+  	
+</ui:composition>

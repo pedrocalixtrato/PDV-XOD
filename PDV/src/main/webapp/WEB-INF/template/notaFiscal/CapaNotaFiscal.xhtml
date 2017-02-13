@@ -1,0 +1,72 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">          
+     
+    
+		<p:panelGrid columns="4" style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo, rotulo, campo" id="pnlCapaPedido">
+	
+			<p:outputLabel value="Número da Nf-e" />
+			<h:outputText />
+			
+			<p:outputLabel value="Data Emissão"/>
+			<h:outputText >
+				<f:convertDateTime  pattern="dd/MM/yyyy"/>
+	        </h:outputText>	
+	        
+	        <p:outputLabel value="Data Saida/Entrada"/>
+			<h:outputText >
+				<f:convertDateTime  pattern="dd/MM/yyyy"/>
+	        </h:outputText>
+	        
+	        <p:outputLabel value="Status"/>
+	        <h:outputText value="#{cadastroPedidoBean.pedido.status.descricao}" />
+	        
+	            <p:outputLabel value="Nota Finalidade" />
+	        <p:selectOneMenu >
+	            <f:selectItem itemLabel="Selecione" />
+	            <f:selectItems var="vendedorVar"/> 
+	        </p:selectOneMenu>
+	        
+	        <p:outputLabel value="Tipo" />			
+			<p:selectOneRadio >
+				<f:selectItem itemLabel="Entrada" itemValue="true" />
+			    <f:selectItem itemLabel="Saída" itemValue="false" />		           
+			</p:selectOneRadio>	     
+	       
+	        
+	        <p:outputLabel value="Cliente" for="cliente"/>
+	        <p:autoComplete id="cliente" size="40" />
+	        
+	        <p:outputLabel value="Forma de pagamento" for="formaPagamento"/>
+	        <p:selectOneMenu id="formaPagamento" value="#{cadastroPedidoBean.pedido.formaPagamento}"
+	        				 disabled="#{cadastroPedidoBean.pedido.naoAlteravel}">
+	            <f:selectItem itemLabel="Selecione" />
+	            <f:selectItems value="#{cadastroPedidoBean.formasPagamento}" var="formaPagamentoVar"
+	            			   itemValue="#{formaPagamentoVar}" itemLabel="#{formaPagamentoVar.descricao}" />
+	        </p:selectOneMenu>
+	        
+	        <p:outputLabel value="Valor do frete" for="valorFrete" styleClass="moeda" />
+	        <p:inputText id="valorFrete" size="10" maxlength="10">
+	        	<f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>        	
+	        </p:inputText>
+	        
+	        <p:outputLabel value="Subtotal" style="font-weight: bold"/>
+	        <h:outputText>
+	        	<f:convertNumber type="currency" />
+	        </h:outputText>
+	        
+	        <p:outputLabel value="Valor de desconto" />
+	        <p:inputText >
+	       		<f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>       		
+	        </p:inputText>
+	        
+	        <p:outputLabel value="Total da Nota" style="font-weight: bold; font-size: 1.1em"/>
+	        <h:outputText >
+	        	<f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>
+	        </h:outputText>
+       
+		</p:panelGrid>
+</ui:composition>
