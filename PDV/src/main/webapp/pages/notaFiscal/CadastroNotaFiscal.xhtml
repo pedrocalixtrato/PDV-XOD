@@ -8,6 +8,10 @@
 
         
     
+    <f:metadata>    	
+    	<f:event listener="#{cadastroNotaBean.init()}" type="preRenderView"/>    	
+    </f:metadata>
+    
     <ui:define name="titulo">Nota Fiscal</ui:define>
     
     <ui:define name="corpo">
@@ -16,7 +20,7 @@
 	    	
 	    	<p:messages autoUpdate="true" closable="true" />
 	    	
-	    	<ui:include src="/WEB-INF/template/pedidos/BotoesPedido.xhtml" />
+	    	<ui:include src="/WEB-INF/template/notaFiscal/BotoesNota.xhtml" />
 	    	
 	    	<ui:include  src="/WEB-INF/template/notaFiscal/CapaNotaFiscal.xhtml" />	    	
 	    	

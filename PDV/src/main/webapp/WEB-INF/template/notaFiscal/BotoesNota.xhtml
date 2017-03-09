@@ -7,8 +7,8 @@
 	<p:toolbar style="margin-top: 20px">
   		<p:toolbarGroup>
   			<p:button value="Novo" outcome="/pages/pedidos/CadastroPedido.xhtml" />
-  			<p:commandButton value="Salvar" action="#{cadastroPedidoBean.salvar}"
-  							 update="@form" disabled="#{cadastroPedidoBean.pedido.naoAlteravel}"/>
+  			<p:commandButton value="Salvar" action="#{cadastroNotaBean.salvar}"
+  							 update="@form" />
   		</p:toolbarGroup>
   		
   		<p:toolbarGroup align="right">
@@ -17,7 +17,6 @@
   			<p:commandButton value="Cancelar" action="#{cancelamentoPedidoBean.cancelarPedido}"
   							 process="@this" update="@form" disabled="#{cadastroPedidoBean.pedido.naoCancelavel}" />
   			<p:commandButton value="Enviar por e-mail" />
-  			<p:commandButton value="Imprimir" actionListener="#{imprimirPedidoBean.emitir()}"  ajax="false"/>
   			
   			<p:separator/>
   		

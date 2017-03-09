@@ -53,7 +53,20 @@
 					<f:selectItems value="#{usuarioBean.grupos}"  var="grupoVar"
             			   itemValue="#{grupoVar}" itemLabel="#{grupoVar.descricao}" />
 				</p:selectManyCheckbox>	
-
+				
+				<p:outputLabel value="Empresa Nome" />
+				<p:inputText  />
+				
+				<p:outputLabel value="Empresa" />
+				<p:selectOneMenu value="#{usuarioBean.usuario.empresa}" converter="empresaConverter">
+		            <f:selectItem itemLabel="Selecione" />
+		            <f:selectItems value="#{usuarioBean.empresas}"  var="empVar"
+		            			   itemValue="#{empVar}" itemLabel="#{empVar.nomeFantasia}"/> 
+		        </p:selectOneMenu>
+				
+				<p:outputLabel value="Empresa Codigo" />
+				<p:inputText  />
+				
 				<p:outputLabel value="Ativo" />			
 			        <p:selectOneRadio >
 					 <f:selectItem itemLabel="Sim" itemValue="true" />

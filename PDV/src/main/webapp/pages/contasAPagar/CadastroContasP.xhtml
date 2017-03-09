@@ -16,11 +16,8 @@
 	
 		<f:metadata>
 			<o:viewParam name="contasPCod"
-				value="#{contasAPagarBean.contasAPagar}" />			
-			
-			
-		</f:metadata>
-		
+				value="#{contasAPagarBean.contasAPagar}" />				
+		</f:metadata>		
 		
 		
 		<h:form id="frmCadastro">
@@ -39,13 +36,13 @@
 
 				
 				<p:outputLabel value="Codigo" />
-				<p:inputText value="#{produtoBean.produto.codigo}" readonly="true" size="5" />
+				<p:inputText value="#{produtoBean.produto.id}" readonly="true" size="5" />
 
 				<p:outputLabel value="Fornecedor" />
 				<p:inputText value="#{contasAPagarBean.contasAPagar.fornecedor}" />
 
 				<p:outputLabel value="Valor" />
-				<p:inputText value="-#{contasAPagarBean.contasAPagar.valor}" />				
+				<p:inputText value="#{contasAPagarBean.contasAPagar.valor}" />				
 				
 				<p:outputLabel value="Data de Vencimento" />
 				<p:calendar size="8" value="#{contasAPagarBean.contasAPagar.data}">

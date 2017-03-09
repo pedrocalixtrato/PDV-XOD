@@ -37,14 +37,14 @@
 	<http auto-config="false" use-expressions="true" disable-url-rewriting="true">
 		<custom-filter ref="exceptionTranslationFilter" before="FILTER_SECURITY_INTERCEPTOR" />
 
-		<intercept-url pattern="/Home.xhtml" access="isAuthenticated()" />
-		<intercept-url pattern="/pages/usuario/CadastroUsuario.xhtml" access="isAuthenticated()" />
-		<intercept-url pattern="/AcessoNegado.xhtml" access="isAuthenticated()" />
-		<intercept-url pattern="/pages/pedidos/**"
-			access="hasAnyRole('VENDEDORES', 'AUXILIARES', 'ADMINISTRADORES')" />
-		<intercept-url pattern="/pages/produtos/**" access="hasAnyRole('ADMINISTRADORES')" />
+<!-- 	<intercept-url pattern="/Home.xhtml" access="isAuthenticated()" /> 
+		<intercept-url pattern="/pages/usuario/CadastroUsuario.xhtml" access="isAuthenticated()" />		
+		<intercept-url pattern="/AcessoNegado.xhtml" access="isAuthenticated()" />		
+		<intercept-url pattern="/pages/pedidos/**" access="hasAnyRole('VENDEDORES', 'AUXILIARES', 'ADMINISTRADORES')" />		
+		<intercept-url pattern="/pages/produtos/**" access="hasAnyRole('ADMINISTRADORES')" />		
 		<intercept-url pattern="/pages/**" access="hasAnyRole('ADMINISTRADORES')" />
-		<intercept-url pattern="/**" access="denyAll" />
+		
+		<intercept-url pattern="/**" access="denyAll" />  -->
 
 		<form-login login-page="/Login.xhtml"
 			authentication-failure-url="/Login.xhtml?invalid=true"

@@ -30,81 +30,94 @@
 
 						
 
-			<p:panelGrid columns="4" style="width: 100%; margin-top: 20px"
+			<p:panelGrid id="pnlGrid" columns="4" style="width: 100%; margin-top: 20px"
 				columnClasses="rotulo, campo, rotulo, campo">
 				
-
-				<p:outputLabel value="Nome" />
-				<p:inputText value="#{clienteBean.cliente.nome}"  />
-				
 				<p:outputLabel value="Tipo" />
-				<p:inputText value="#{clienteBean.cliente.cliTipo}" />
+				<p:selectOneMenu value="#{clienteBean.cliente.cliTipo}" id="tipoID" >
+					<f:selectItem itemLabel="Selecione o Tipo" />
+					<f:selectItems value="#{clienteBean.tipoPessoa}" var="tipoVar" 
+								   itemValue="#{tipoVar}" 
+								   itemLabel="#{tipoVar.descricao}"/>
+					<p:ajax event="change" process="@this" 
+					update="pnlGrid"	/>					
+				</p:selectOneMenu>
 
-
-				<p:outputLabel value="CPF/CNPJ" />
-				<p:inputMask value="#{clienteBean.cliente.cpfCnpj}" mask="999.999.999-99" />
-
-				<p:outputLabel value="RG/INSC" />
-				<p:inputText value="#{clienteBean.cliente.rgInsc}" />
+				<p:outputLabel value="Nome" rendered="#{clienteBean.cliente.cliTipo == 'FISICA'}"/>
+				<p:inputText value="#{clienteBean.cliente.nome}" rendered="#{clienteBean.cliente.cliTipo == 'FISICA'}" />
+				
+				<p:outputLabel value="Razao Social" rendered="#{clienteBean.cliente.cliTipo == 'JURIDICA'}" />
+				<p:inputText value="#{clienteBean.cliente.nome}" rendered="#{clienteBean.cliente.cliTipo == 'JURIDICA'}"  />
+				
+				
+				
+				
+					<p:outputLabel value="CNPJ" rendered="#{clienteBean.cliente.cliTipo == 'JURIDICA'}" />				
+					<p:inputMask   value="#{clienteBean.cliente.cpfCnpj}" mask="99.999.999/9999-99" 
+						rendered="#{clienteBean.cliente.cliTipo == 'JURIDICA'}"/>
+			
+				
+				
+					<p:outputLabel value="CPF" rendered="#{clienteBean.cliente.cliTipo == 'FISICA'}" />				
+					<p:inputMask   value="#{clienteBean.cliente.cpfCnpj}" mask="999.999.999-99" 
+						rendered="#{clienteBean.cliente.cliTipo == 'FISICA'}"/>
+				
+				
+				
+				<p:outputLabel value="Incrição Estadual" rendered="#{clienteBean.cliente.cliTipo == 'JURIDICA'}" />				
+				<p:inputText  disabled="#{clienteBean.cliente.tipo}" value="#{clienteBean.cliente.rgInsc}" 
+					rendered="#{clienteBean.cliente.cliTipo == 'JURIDICA'}"/>
+								
+				
+				<p:outputLabel value="RG" rendered="#{clienteBean.cliente.cliTipo == 'FISICA'}"  />				
+				<p:inputText  disabled="#{clienteBean.cliente.tipo}" value="#{clienteBean.cliente.rgInsc}" 
+					rendered="#{clienteBean.cliente.cliTipo == 'FISICA'}"/>
+				
 
 				
 			</p:panelGrid>
 
 			<p:tabView style="margin-top: 20px">
 				<p:tab title="Endereço">
-					<p:panelGrid columns="4"
+					<p:panelGrid columns="4" style="width: 100%; margin-top: 20px"
 						columnClasses="rotulo, campo, rotulo, campo">
 
 						<p:outputLabel value="Rua" />
-						<h:inputText value="#{clienteBean.cliente.endEndereco}" size="20"  />
-
+						<p:inputText value="#{clienteBean.cliente.endEndereco}" size="20"  />
+						
+						<p:spacer/>
+						<p:spacer/>
+						
 						<p:outputLabel value="Complemento" />
-						<h:inputText value="#{clienteBean.cliente.endComp}"  />
+						<p:inputText value="#{clienteBean.cliente.endComp}"  />
 
 
 						<p:outputLabel value="Nº" />
-						<h:inputText value="#{clienteBean.cliente.endNum}" size="5" />
+						<p:inputText value="#{clienteBean.cliente.endNum}" size="5" />
 
 						<p:outputLabel value="Bairro" />
-						<h:inputText value="#{clienteBean.cliente.endBairro}"  />
+						<p:inputText value="#{clienteBean.cliente.endBairro}"  />
 
 
 						<p:outputLabel value="Cidade" />
-						<h:inputText value="#{clienteBean.cliente.endCidNom}" />
+						<p:inputText value="#{clienteBean.cliente.endCidNom}" />
 
 						<p:outputLabel value="UF" />
-						<h:inputText value="#{clienteBean.cliente.endCidUf}" />
+						<p:inputText value="#{clienteBean.cliente.endCidUf}" />
 
 						<p:outputLabel value="CEP" />
-						<h:inputText value="#{clienteBean.cliente.endCep}" />
+						<p:inputText value="#{clienteBean.cliente.endCep}" />
 
 						<p:outputLabel value="Cod. IBGE" />
-						<h:inputText value="#{clienteBean.cliente.endIBGEMunc}" />
+						<p:inputText value="#{clienteBean.cliente.endIBGEMunc}" />
 						
 						<p:outputLabel value="Cod. IBGE UF" />
-						<h:inputText value="#{clienteBean.cliente.endIBGEUF}" />						
+						<p:inputText value="#{clienteBean.cliente.endIBGEUF}" />						
 						
 
 
 					</p:panelGrid>
-				</p:tab>
-				<p:tab title="Dados Fiscais">
-
-					<p:panelGrid columns="4"
-						columnClasses="rotulo, campo, rotulo, campo">
-
-
-						<p:outputLabel value="CPF" />
-						<h:inputText size="20"  />
-
-						<p:outputLabel value="RG" />
-						<h:inputText size="20"  />
-
-
-
-					</p:panelGrid>
-
-				</p:tab>
+				</p:tab>				
 				<p:tab title="Complemento">
 
 				</p:tab>

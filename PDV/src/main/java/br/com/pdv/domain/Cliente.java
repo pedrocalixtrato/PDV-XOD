@@ -1,7 +1,7 @@
 package br.com.pdv.domain;
 
 import java.io.Serializable;
-
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,9 +14,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.context.annotation.Primary;
+
+import br.com.pdv.Enum.StatusPedido;
+import br.com.pdv.Enum.TipoPessoa;
 
 @SuppressWarnings("serial")
 @Entity
@@ -195,6 +199,21 @@ public class Cliente implements Serializable {
 	public void setFiliais(Filiais filiais) {
 		this.filiais = filiais;
 	}
+	
+	@Transient
+	public boolean isFisica(){
+		return this.isTipo();
+	}
+	@Transient
+	public boolean isJuridica(){
+		return !this.isFisica();
+	}
+	
+	@Transient
+	public boolean isTipo(){
+		return TipoPessoa.FISICA.equals(getCliTipo());
+	}
+	
 	
 	
 	

@@ -12,11 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -36,6 +33,7 @@ public class Usuario implements Serializable {
 	private String nome;
 	private String email;
 	private String senha;
+	private Empresa empresa;
 	private List<Grupo> grupos = new ArrayList<>();
 	
 	@Id  
@@ -66,7 +64,17 @@ public class Usuario implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+		
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "empresa_id", nullable = false)
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+
 	@Column(nullable = false, length = 20)
 	public String getSenha() {
 		return senha;
