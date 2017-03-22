@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><nfeProc versao="3.10" xmlns="http://www.portalfiscal.inf.br/nfe"><NFe xmlns="http://www.portalfiscal.inf.br/nfe"><infNFe Id="NFe53150110793118000178550010000010001000010003" versao="3.10"><ide><cUF>53</cUF><cNF>00001000</cNF><natOp>VENDA</natOp><indPag>0</indPag><mod>55</mod><serie>1</serie><nNF>1000</nNF><dhEmi>2015-01-13T18:27:37-02:00</dhEmi><dhSaiEnt>2015-01-13T18:27:37-02:00</dhSaiEnt><tpNF>1</tpNF><idDest>1</idDest><cMunFG>5300108</cMunFG><tpImp>1</tpImp><tpEmis>1</tpEmis><cDV>3</cDV><tpAmb>2</tpAmb><finNFe>1</finNFe><indFinal>0</indFinal><indPres>1</indPres><procEmi>0</procEmi><verProc>100</verProc></ide><emit><CNPJ>10793118000178</CNPJ><xNome>EMPRESA MATRIZ PARA TESTES</xNome><xFant>EMPRESA PARA TESTES</xFant><enderEmit><xLgr>LOGRADOURO EMPRESA</xLgr><nro>1</nro><xCpl>COMPLEMENTO</xCpl><xBairro>BAIRRO</xBairro><cMun>5300108</cMun><xMun>CIDADE</xMun><UF>DF</UF><CEP>70000000</CEP><cPais>1058</cPais><xPais>BRASIL</xPais></enderEmit><IE>0751990400114</IE><IM>ISENTO</IM><CRT>2</CRT></emit><dest><CPF>00000000191</CPF><xNome>NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL</xNome><enderDest><xLgr>LOGRADOURO PESSOA FISICA</xLgr><nro>2</nro><xCpl>COMPLEMENTO</xCpl><xBairro>BAIRRO</xBairro><cMun>5300108</cMun><xMun>CIDADE</xMun><UF>DF</UF><CEP>71000000</CEP><cPais>1058</cPais><xPais>Brazil</xPais></enderDest><indIEDest>2</indIEDest><email>pf@gmail.com</email></dest><det nItem="1"><prod><cProd>7896019606226</cProd><cEAN>7896019606226</cEAN><xProd>PRODUTO 01 DO SUBGRUPO 01 DO GRUPO 01</xProd><NCM>17049010</NCM><CFOP>5101</CFOP><uCom>UN</uCom><qCom>1.0000</qCom><vUnCom>6.000000</vUnCom><vProd>6.00</vProd><cEANTrib>7896019606226</cEANTrib><uTrib>UN</uTrib><qTrib>1.0000</qTrib><vUnTrib>6.000000</vUnTrib><indTot>1</indTot></prod><imposto><ICMS><ICMS00><orig>0</orig><CST>00</CST><modBC>3</modBC><vBC>6.00</vBC><pICMS>17.00</pICMS><vICMS>1.02</vICMS></ICMS00></ICMS><PIS><PISAliq><CST>01</CST><vBC>7.02</vBC><pPIS>0.65</pPIS><vPIS>0.05</vPIS></PISAliq></PIS><COFINS><COFINSAliq><CST>01</CST><vBC>7.02</vBC><pCOFINS>3.00</pCOFINS><vCOFINS>0.21</vCOFINS></COFINSAliq></COFINS></imposto></det><det nItem="2"><prod><cProd>7896019606226</cProd><cEAN>7896019606226</cEAN><xProd>PRODUTO 01 DO SUBGRUPO 01 DO GRUPO 01</xProd><NCM>17049010</NCM><CFOP>5101</CFOP><uCom>UN</uCom><qCom>1.0000</qCom><vUnCom>6.000000</vUnCom><vProd>6.00</vProd><cEANTrib>7896019606226</cEANTrib><uTrib>UN</uTrib><qTrib>1.0000</qTrib><vUnTrib>6.000000</vUnTrib><indTot>1</indTot></prod><imposto><ICMS><ICMS00><orig>0</orig><CST>00</CST><modBC>3</modBC><vBC>6.00</vBC><pICMS>17.00</pICMS><vICMS>1.02</vICMS></ICMS00></ICMS><PIS><PISAliq><CST>01</CST><vBC>7.02</vBC><pPIS>0.65</pPIS><vPIS>0.05</vPIS></PISAliq></PIS><COFINS><COFINSAliq><CST>01</CST><vBC>7.02</vBC><pCOFINS>3.00</pCOFINS><vCOFINS>0.21</vCOFINS></COFINSAliq></COFINS></imposto></det><total><ICMSTot><vBC>12.00</vBC><vICMS>2.04</vICMS><vICMSDeson>0.00</vICMSDeson><vBCST>0.00</vBCST><vST>0.00</vST><vProd>12.00</vProd><vFrete>0.00</vFrete><vSeg>0.00</vSeg><vDesc>0.00</vDesc><vII>0.00</vII><vIPI>0.00</vIPI><vPIS>0.10</vPIS><vCOFINS>0.42</vCOFINS><vOutro>0.00</vOutro><vNF>12.00</vNF></ICMSTot></total><transp><modFrete>0</modFrete></transp><infAdic/></infNFe><Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI="#NFe53150110793118000178550010000010001000010003"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>azvzLb6wfLtzPMxBlPEwKG4i7dU=</DigestValue></Reference></SignedInfo><SignatureValue>XWmIztqZ+j5lUNLWj2ovoY8/Ak8RDdIOfjVfBYUDtY7769KxmfBRewy0+gV4iOk6Y946IFlUwD1I
+9KrERWVkUu5mVNm84qZsamB957D9HhCCvsvShbxAylRN7LXFHt7e7thu/ibYT5uKsa7F2b/S5jwY
+TycAMIrcT4rXUrvMNkjvzxYl+o8Zzo3n8BGEAWgvJOYdNB0lyyHo1b1EVPYoS8nd1gKKvPfFyzJn
+c9Sa4pa67QKXRBqSp/CXpkATWdI1sZjlUO4+rmmaQaE4ATITZqbiCyQQGfy8X/WiV7LlzH5PEvuN
++XrzyZURTWf+nSJJMK/p93SW4M5Cxv2RuO6m0Q==</SignatureValue><KeyInfo><X509Data><X509Certificate>MIIHIjCCBQqgAwIBAgIIDX9EHrNpQRIwDQYJKoZIhvcNAQELBQAwXTELMAkGA1UEBhMCQlIxEzAR
+BgNVBAoMCklDUC1CcmFzaWwxIDAeBgNVBAsMF0NhaXhhIEVjb25vbWljYSBGZWRlcmFsMRcwFQYD
+VQQDDA5BQyBDQUlYQSBQSiB2MjAeFw0xNDEyMjIxODE2MTVaFw0xNTEyMjIxODE2MTVaMIGbMQsw
+CQYDVQQGEwJCUjETMBEGA1UECgwKSUNQLUJyYXNpbDEgMB4GA1UECwwXQ2FpeGEgRWNvbm9taWNh
+IEZlZGVyYWwxFzAVBgNVBAsMDkFDIENBSVhBIFBKIHYyMTwwOgYDVQQDDDNUMlRJIFRFQ05PTE9H
+SUEgREEgSU5GT1JNQUNBTyBMVERBIC0gTUU6NzgyMDUwMTgxMjAwggEiMA0GCSqGSIb3DQEBAQUA
+A4IBDwAwggEKAoIBAQDQnP1wADRAeHFuw5kepsD6UPMg42vzmhkAU2A4Ftyx9DopqeTnGjfTIkd3
+mCdwz8HkwYYzwOIGl8Jt1mYqKgKkkH9bzZXJFWFEwGQKmsxDcD4fq8GKWTI7E+n1hzSqH3ASshyP
+62Ggg+wlSiLv35b+fNn6xAm9meMggQu2GHRYP9d7vS10CT1F59F11WcuUNjZQMfztl073inBBgHY
+yWlRZz6SaqIa4YQl+ymD0ToSMD7UciNZi1/wcAS+yAKKu/7Lsv13g6dCYtO43Px/lM5fR+Xt3ZX2
+Tl6kgATeK+lTHpwrhzDRJapOjp6zskz8SkWadLSa1AfS+IsoSJylHHuLAgMBAAGjggKlMIICoTAO
+BgNVHQ8BAf8EBAMCBeAwKQYDVR0lBCIwIAYIKwYBBQUHAwIGCCsGAQUFBwMEBgorBgEEAYI3FAIC
+MB0GA1UdDgQWBBRbB6LV/tWAxsG4KGiWnXLNnCC0KzAfBgNVHSMEGDAWgBRPTQ0BnGpp23AJpN4z
+rvZ8kp41wjCBpwYDVR0RBIGfMIGcoBcGBWBMAQMHoA4EDDAwMDAwMDAwMDAwMKBCBgVgTAEDBKA5
+BDcwNjA5MTk3Njc4MjA1MDE4MTIwMDAwMDAwMDAwMDAwMDAwMDA4NjEyNTgwNDAgIERFVFJBTkRG
+oBkGBWBMAQMDoBAEDjEwNzkzMTE4MDAwMTc4oCIGBWBMAQMCoBkEF0NMQVVESU8gREUgQkFSUk9T
+IFNJTFZBMGYGA1UdIARfMF0wWwYGYEwBAgEJMFEwTwYIKwYBBQUHAgEWQ2h0dHA6Ly9jZXJ0aWZp
+Y2Fkb2RpZ2l0YWwuY2FpeGEuZ292LmJyL2RvY3VtZW50b3MvZHBjYWMtY2FpeGFwai5wZGYwgbkG
+A1UdHwSBsTCBrjAtoCugKYYnaHR0cDovL2xjci5jYWl4YS5nb3YuYnIvYWNjYWl4YXBqdjIuY3Js
+MC6gLKAqhihodHRwOi8vbGNyMi5jYWl4YS5nb3YuYnIvYWNjYWl4YXBqdjIuY3JsME2gS6BJhkdo
+dHRwOi8vcmVwb3NpdG9yaW8uaWNwYnJhc2lsLmdvdi5ici9sY3IvQ0FJWEEvQUNDQUlYQVBKL2Fj
+Y2FpeGFwanYyLmNybDBWBggrBgEFBQcBAQRKMEgwRgYIKwYBBQUHMAKGOmh0dHA6Ly9jZXJ0aWZp
+Y2Fkb2RpZ2l0YWwuY2FpeGEuZ292LmJyL2FpYS9hY2NhaXhhcGp2Mi5wN2IwDQYJKoZIhvcNAQEL
+BQADggIBADZBO8hUAhJfst+6fohrwNgGJ6rRyMHmOd+ZbShXjgmduj3srdF6EmTrEMegXasste6F
+ijW7GvHlOkes3khoxCKbBMXC1WntpdRa9N4QlZ381ZfXRwzCSdjsWEK4UiHtuGlwRUklmxQJCaBi
+mZ7HYY7i4LLPqmmNMe8eqNyloJSZ7lzhE11rqY6SU9oxYOFneNDZaavGYyPqRWA4bsepv+remCGS
+RoDzfN6mKtzdtYBD4vQxJ0w9xOwxRxzZ3ihLFwm/f/2GEg7nkuvE1+E2RyXNhdx7T8m3kq4vJoDV
+gyUniSNRG+Ph1w9M5Z4OvK+8/8jP8EHAN8aNkbQ2pV4EPc4JZBlrnZQUcoPvWO5cYyf7hhv/k1Yi
+8hBBJXFUBPD9UtOcJnDSbLwAhJ89yYLJxb5DqBwsIrGPyCrbtxIEKICiFiCJZ0VU/3+iV/ny/GgD
+YpiYpVvzKZQUy/JNbwb1AVqm3/FeeGm/JstvKNEFbugqWE9i8hFzk6CDWlCTVpLoMch1vzm9R53g
+AOm8cL3ZyvUNhQTAgDKDoiL35BggXdPy+nfKIVr8VDKGuiVS2oVaoWP7/6m7s5x6yqvf1X1L+vFB
+C06KwJac3pk9pd5V7aK68LkwopPPSTpKG5MgajnUY+lhbQkxDADumdIJftWkuFT5sotEWyInMBcV
++VX+S1ea</X509Certificate></X509Data></KeyInfo></Signature></NFe><protNFe xmlns="http://www.portalfiscal.inf.br/nfe" versao="3.10"><infProt><tpAmb>2</tpAmb><verAplic>SVRS201412301043</verAplic><chNFe>53150110793118000178550010000010001000010003</chNFe><dhRecbto>2015-01-13T18:27:56-02:00</dhRecbto><nProt>353150000020657</nProt><digVal>azvzLb6wfLtzPMxBlPEwKG4i7dU=</digVal><cStat>100</cStat><xMotivo>Autorizado o uso da NF-e</xMotivo></infProt></protNFe></nfeProc>
