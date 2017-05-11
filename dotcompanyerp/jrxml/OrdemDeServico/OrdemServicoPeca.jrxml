@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ordemServicoPeca" language="groovy" pageWidth="671" pageHeight="595" orientation="Landscape" columnWidth="631" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="90eb3e4a-813e-47ed-8e4b-4c0d2931cbb6">
+	<property name="ireport.zoom" value="2.052632472922827"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="vlr_unitario" class="java.math.BigDecimal"/>
+	<field name="vlr_total" class="java.math.BigDecimal"/>
+	<field name="descricao" class="java.lang.String"/>
+	<field name="qtd_produto" class="java.lang.Long"/>
+	<variable name="totalGeralSaldo" class="java.lang.Double" calculation="Sum"/>
+	<variable name="totalGeralPecas" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{vlr_total}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="15">
+			<staticText>
+				<reportElement x="0" y="0" width="375" height="13" uuid="b1f9f291-115f-4969-a73e-697b4cf38929"/>
+				<textElement rotation="None">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Nome / Descrição do Produto]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="15" splitType="Stretch">
+			<staticText>
+				<reportElement x="375" y="0" width="83" height="13" uuid="8369780a-43a6-4e5f-bc51-202cb4d67f18"/>
+				<textElement textAlignment="Right" rotation="None">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Quantidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="458" y="0" width="78" height="13" uuid="befbbb3f-2c14-4ca2-9d91-81a497b8eb28"/>
+				<textElement textAlignment="Right" rotation="None">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Valor Vendido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="535" y="0" width="95" height="13" uuid="9b29a21c-f01d-46c2-b196-1486fe79b5e8"/>
+				<textElement textAlignment="Right" rotation="None">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Valor Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="263" height="13" uuid="3947b885-e053-43cc-9e39-c3b22ca95812"/>
+				<textElement rotation="None">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Descrição de Produto Gasto]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="1" width="630" height="11" forecolor="#FFFFFF" backcolor="#F0F0F0" uuid="74049b83-89c6-4846-9a43-cc1f0a9c1052">
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT}.intValue() % 2) == 0)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="375" height="12" uuid="c060af9a-cc27-41c5-81c5-f07e6cd71992"/>
+				<textElement>
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descricao}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###,##0.00;###,###,##0.00" isBlankWhenNull="true">
+				<reportElement x="375" y="0" width="83" height="12" uuid="ecf2ee23-c20d-4aab-a545-cc33129a9785"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qtd_produto}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###,##0.00;###,###,##0.00" isBlankWhenNull="true">
+				<reportElement x="458" y="0" width="78" height="12" uuid="4749a36e-5544-4edc-94e3-c9dbeb16e438"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vlr_unitario}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###,##0.00;###,###,##0.00" isBlankWhenNull="true">
+				<reportElement x="535" y="0" width="95" height="12" uuid="a6d01dac-976f-4ef5-a319-e9b0fee145ed"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vlr_total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="15" splitType="Immediate">
+			<textField pattern="###,###,##0.00;###,###,##0.00" isBlankWhenNull="true">
+				<reportElement x="535" y="0" width="95" height="13" uuid="19ba8cd3-4a9a-47fb-ad49-8779684201ca"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalGeralPecas}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

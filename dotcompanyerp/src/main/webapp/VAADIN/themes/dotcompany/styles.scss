@@ -1,0 +1,44 @@
+/* Import all the mixins for this theme */
+@import "dotcompany.scss";
+
+/* Font embeds and keyframe definitions need to be 
+ * on the top level of the stylesheet, not nested 
+ * with any selectors, so we output them here */
+@include font-open-sans;
+@include icons-fontello;
+@include dotcompany-keyframes;
+
+
+/* Output the actual theme selectors */
+.dotcompany {
+	@include dotcompany;
+}
+
+.dotcompany .v-calendar-event-content {
+    background-repeat: repeat-x, no-repeat;
+    background-size: auto, cover;
+    border: 1px solid #000;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+ }
+
+.dotcompany .v-calendar-event-caption {
+    right: 0;
+    width: auto;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+
+    span {
+      color: #979699;
+    }
+}
+
+.dotcompany .v-calendar-header-day {
+    font-weight: $v-font-weight + 200;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    color: $v-focus-color;
+}

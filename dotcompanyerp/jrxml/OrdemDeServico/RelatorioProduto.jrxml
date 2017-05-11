@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioProduto" language="groovy" pageWidth="900" pageHeight="595" orientation="Landscape" columnWidth="860" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="39453665-7a50-4079-9de5-171ccdea0f64">
+	<property name="ireport.zoom" value="2.0526324729228267"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="79"/>
+	<parameter name="imglogo" class="java.lang.String"/>
+	<parameter name="imgtopo" class="java.lang.String"/>
+	<parameter name="filtro" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="codigo_fabricante" class="java.lang.String"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="descricao" class="java.lang.String"/>
+	<field name="valor_custo" class="java.lang.Double"/>
+	<field name="valor_venda" class="java.lang.Double"/>
+	<field name="preco_lucro_minimo" class="java.lang.Double"/>
+	<field name="preco_lucro_maximo" class="java.lang.Double"/>
+	<field name="quantidade_estoque" class="java.lang.Double"/>
+	<variable name="totalGeralCusto" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{valor_custo} * $F{quantidade_estoque}]]></variableExpression>
+	</variable>
+	<variable name="totalGeralVenda" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{valor_venda} * $F{quantidade_estoque}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="106">
+			<image scaleImage="RetainShape">
+				<reportElement x="0" y="0" width="322" height="99" uuid="6078ce58-0c5c-4bbf-8bd2-70e0407f14e2"/>
+				<imageExpression><![CDATA[$P{imglogo}]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement x="322" y="80" width="537" height="20" forecolor="#999999" uuid="2909741a-396d-46d5-bd6e-4f164ef73bc9"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true" isStrikeThrough="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{filtro}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="321" y="48" width="538" height="32" forecolor="#999999" uuid="713412dc-471c-43cc-b771-9cff323f6c16"/>
+				<textElement textAlignment="Right" rotation="None">
+					<font fontName="SansSerif" size="25" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Relatório de Produtos]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="99" width="860" height="6" isRemoveLineWhenBlank="true" forecolor="#FFFFFF" backcolor="#41863A" uuid="51b14b77-e670-4f2d-8db8-e63965152a97"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="13" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="41" height="13" uuid="3c3ab6a3-0aea-405c-b071-d08e4d3f362d"/>
+				<textElement rotation="None">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="718" y="0" width="71" height="13" uuid="cdf61223-edbd-4d50-8d57-779006d9309d"/>
+				<textElement textAlignment="Right" rotation="None">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Total Custo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="0" width="88" height="13" uuid="bc9a098b-20f8-489f-af9c-cde0dbbe7c2e"/>
+				<textElement rotation="None">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Cod. Fabricante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="129" y="0" width="117" height="13" uuid="898a308a-2e79-4312-b1bb-0628d3db7d53"/>
+				<textElement rotation="None">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="246" y="0" width="109" height="13" uuid="4257d153-fc4c-4c6a-858d-67c725a7cacf"/>
+				<textElement rotation="None">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Marca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="0" width="74" height="13" uuid="a84d64b4-12f4-43e5-98f8-055d3afbe879"/>
+				<textElement textAlignment="Right" rotation="None">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Preço Custo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="429" y="0" width="73" height="13" uuid="66891cd6-6097-4001-9408-874b185d2389"/>
+				<textElement textAlignment="Right" rotation="None">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="502" y="0" width="70" height="13" uuid="01b56dfd-0bca-4d21-a4ab-fdae6c6bebfa"/>
+				<textElement textAlignment="Right" rotation="None">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Valor Mínimo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="572" y="0" width="71" height="13" uuid="df2271a3-8b5c-4be3-90d2-3f11329c25fb"/>
+				<textElement textAlignment="Right" rotation="None">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Valor Máximo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="643" y="0" width="75" height="13" uuid="92055dc4-d2a0-43e4-a5ed-051bf61d3942"/>
+				<textElement textAlignment="Right" rotation="None">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Saldo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="789" y="0" width="70" height="13" uuid="f7008c40-2cf2-4d90-9378-9c0100f11113"/>
+				<textElement textAlignment="Right" rotation="None">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Total Venda]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="1" width="860" height="11" forecolor="#FFFFFF" backcolor="#F0F0F0" uuid="d756361b-d45b-4a41-9c34-861136d886bd">
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT}.intValue() % 2) == 0)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="41" height="12" uuid="85946b6d-2c26-4fad-984f-f37b3b613e5b"/>
+				<textElement>
+					<font size="7"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="41" y="0" width="88" height="12" uuid="cad1068e-95a9-4249-801f-15d4f0eedad5"/>
+				<textElement>
+					<font size="7"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo_fabricante}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="129" y="0" width="117" height="12" uuid="b17de515-3d51-4c48-a6ed-c3b45d9b8461"/>
+				<textElement>
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descricao}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###,##0.00;###,###,##0.00" isBlankWhenNull="true">
+				<reportElement x="718" y="0" width="71" height="12" uuid="9e81c2c3-ca28-4370-85e1-286764ab087f"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantidade_estoque} * $F{valor_custo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="246" y="0" width="109" height="12" uuid="d7a79079-f82b-452b-8e2b-660d43362abd"/>
+				<textElement>
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###,##0.00;###,###,##0.00" isBlankWhenNull="true">
+				<reportElement x="355" y="0" width="74" height="12" uuid="8d55aaba-b77e-48cd-a081-0f452f3b2dbd"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor_custo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###,##0.00;###,###,##0.00" isBlankWhenNull="true">
+				<reportElement x="429" y="0" width="73" height="12" uuid="2e19e649-b3e8-4aca-a4a8-e21f712f9212"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor_venda}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###,##0.00;###,###,##0.00" isBlankWhenNull="true">
+				<reportElement x="502" y="0" width="70" height="12" uuid="1fa1be6a-df2d-41ab-b345-8cac1bd828a9"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{preco_lucro_minimo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###,##0.00;###,###,##0.00" isBlankWhenNull="true">
+				<reportElement x="572" y="0" width="71" height="12" uuid="a80d429f-0730-4c0e-8f2f-aa1139e274d2"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{preco_lucro_maximo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###,##0.00;###,###,##0.00" isBlankWhenNull="true">
+				<reportElement x="643" y="0" width="75" height="12" uuid="a5ff2cb1-e210-4787-bd8e-062c48c6e2d5"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantidade_estoque}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###,##0.00;###,###,##0.00" isBlankWhenNull="true">
+				<reportElement x="789" y="0" width="70" height="12" uuid="1cc592f0-c69b-443b-9781-889352d16f89"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantidade_estoque} * $F{valor_venda}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="17" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="0" width="860" height="3" isRemoveLineWhenBlank="true" forecolor="#FFFFFF" backcolor="#41863A" uuid="d56f5e1f-f432-4fff-8bad-c658eb071a46"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<textField pattern="dd/mm/yyyy" isBlankWhenNull="true">
+				<reportElement x="0" y="3" width="300" height="14" uuid="699e07b3-15fd-48df-8370-61fca8973295"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="615" y="3" width="174" height="14" uuid="3c0e39be-9036-4725-865d-433448ceda7f"/>
+				<textElement textAlignment="Right">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="789" y="3" width="71" height="14" uuid="13904596-ce13-4f51-a7f4-e6d3aee1422d"/>
+				<textElement>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="40">
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="22" width="860" height="3" isRemoveLineWhenBlank="true" forecolor="#FFFFFF" backcolor="#41863A" uuid="aad83f23-6b9d-4f78-babb-4ca4769faff5"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<textField pattern="dd/mm/yyyy" isBlankWhenNull="true">
+				<reportElement x="0" y="25" width="300" height="15" uuid="1964893a-00ac-4a92-9e51-5b3aab2260f3"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="232" y="7" width="170" height="15" uuid="ecb06a31-bf14-42c2-8dd5-aa8b77f1eaf2"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Total de Registros:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="402" y="7" width="123" height="15" uuid="44e678de-e79d-4126-a75c-a4122e857895"/>
+				<textElement>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="801" y="25" width="59" height="15" uuid="314f509f-345a-4d7f-8a75-a0db0877e98e"/>
+				<textElement>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="595" y="25" width="206" height="15" uuid="5bf1e40c-0b21-4b59-91ab-0464d3c71bee"/>
+				<textElement textAlignment="Right">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="525" y="7" width="193" height="15" uuid="71b049c3-7b13-405a-9b25-d639d8452705"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+			<textField pattern="###,###,##0.00;###,###,##0.00" isBlankWhenNull="true">
+				<reportElement x="718" y="7" width="71" height="15" uuid="0e268dd3-162e-4f9b-9e8d-f30fcd2bd49c"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalGeralCusto}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###,##0.00;###,###,##0.00" isBlankWhenNull="true">
+				<reportElement x="789" y="7" width="70" height="15" uuid="e17d8b5b-a7e2-4461-903a-f885a8e87184"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalGeralVenda}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+</jasperReport>

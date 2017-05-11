@@ -83,8 +83,7 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 		
-	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
-	@LazyCollection(LazyCollectionOption.FALSE)
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)	
 	public List<Grupo> getGrupos() {
 		return grupos;
 	}

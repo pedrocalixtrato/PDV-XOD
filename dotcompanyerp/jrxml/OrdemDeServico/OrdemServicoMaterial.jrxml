@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ordemServicoMaterial" language="groovy" pageWidth="671" pageHeight="595" orientation="Landscape" columnWidth="631" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="e0953684-ebf2-44e1-a96d-dfea9b51e75a">
+	<property name="ireport.zoom" value="2.052632472922827"/>
+	<property name="ireport.x" value="578"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="qtd_produto" class="java.lang.Long"/>
+	<field name="vlr_unitario" class="java.math.BigDecimal"/>
+	<field name="vlr_total" class="java.math.BigDecimal"/>
+	<field name="descricao" class="java.lang.String"/>
+	<variable name="totalGeralMaterial" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{vlr_total}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="15">
+			<staticText>
+				<reportElement x="0" y="0" width="375" height="13" uuid="bbf4886c-8bf2-4b14-861f-8ed1f998cf89"/>
+				<textElement rotation="None">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Nome / Descrição do Material]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch">
+			<staticText>
+				<reportElement x="375" y="0" width="83" height="13" uuid="b5ee1d2f-d2c2-4f1a-825c-3ff46a0604d3"/>
+				<textElement textAlignment="Right" rotation="None">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Quantidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="458" y="0" width="78" height="13" uuid="950189d4-fbc7-4e4b-a302-589b02d0e527"/>
+				<textElement textAlignment="Right" rotation="None">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Valor Vendido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="535" y="0" width="95" height="13" uuid="6eae204c-ef9a-456f-b91d-50a66a6e3496"/>
+				<textElement textAlignment="Right" rotation="None">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Valor Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="263" height="13" uuid="76c80d29-41cb-4e2d-9a46-b5cd1760f3f9"/>
+				<textElement rotation="None">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Descrição de Material Gasto]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="1" width="630" height="11" forecolor="#FFFFFF" backcolor="#F0F0F0" uuid="f4ca3876-1d2b-40f5-be09-a9aab5ebce85">
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT}.intValue() % 2) == 0)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="375" height="12" uuid="2945db78-b1e3-40f5-8ce0-fe1028ba38b2"/>
+				<textElement>
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descricao}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###,##0.00;###,###,##0.00" isBlankWhenNull="true">
+				<reportElement x="375" y="0" width="83" height="12" uuid="530708a4-75bd-46cf-ac9f-888b2a1e46b0"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qtd_produto}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###,##0.00;###,###,##0.00" isBlankWhenNull="true">
+				<reportElement x="458" y="0" width="78" height="12" uuid="310be7a9-9091-446b-b84e-bcfece77f66a"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vlr_unitario}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###,##0.00;###,###,##0.00" isBlankWhenNull="true">
+				<reportElement x="535" y="0" width="95" height="12" uuid="fe2e1fa4-48db-47b4-a50c-d69710b5b951"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vlr_total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="15" splitType="Immediate">
+			<textField pattern="###,###,##0.00;###,###,##0.00" isBlankWhenNull="true">
+				<reportElement x="535" y="0" width="95" height="13" uuid="64e6c3d8-b208-48dc-8b71-faab99dfd4f4"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalGeralMaterial}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

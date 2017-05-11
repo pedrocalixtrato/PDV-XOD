@@ -1,0 +1,91 @@
+@mixin dotcompany-window {
+
+.v-window {
+	        background: transparent;
+	}
+	.v-window-wrap {
+	        border: 1px solid #808386;
+	        -webkit-box-sizing: border-box;
+	        -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+	}
+	.v-sa & .v-window-wrap,
+	.v-op & .v-window-wrap {
+	        border-color: rgba(0,0,0,.2);
+	}
+	.v-window-outerheader {
+	        padding: 12px 52px 0 14px;
+	        height: 37px;
+	        background: black repeat-x;
+	        background-image: url(img/header-bg.png); /** sprite-ref: verticals; sprite-alignment: repeat */
+	}
+	.v-window-header {
+	        font-weight: bold;
+	        font-size: 12px;
+	        line-height: normal;
+	        color: #fff;
+	        text-shadow: #000 0 -1px 0;
+	        white-space: nowrap;
+	        overflow: hidden;
+	        text-overflow: ellipsis;
+	        -ms-text-overflow: ellipsis;
+	}
+	.v-window-error .v-window-header {
+	        padding-left: 13px;
+	        background: transparent url(../common/icons/error.png) no-repeat 0 50%;
+	}
+	.v-window-resizebox {
+	        width: 15px;
+	        height: 15px;
+	        cursor: se-resize;
+	        background: transparent;
+	        background-image: url(img/resize.png); /** sprite-ref: verticals */
+	}
+	.v-window-footer {
+	        background-color:white;
+	        background-repeat: repeat-x;
+	        background-image: url(img/footer-bg.png); /** sprite-ref: verticals; sprite-alignment: repeat */
+	        height: 15px;
+	}
+	.v-window-closebox {
+	        top: 12px;
+	        right: 10px;
+	        width: 15px;
+	        height: 16px;
+	        background: transparent;
+	        background-image: url(img/close.png); /** sprite-ref: verticals */
+	}
+	.v-window-closebox:hover {
+	        background-image: url(img/close-hover.png); /** sprite-ref: verticals */
+	}
+	.v-window-closebox:active {
+	        background-image: url(img/close-pressed.png); /** sprite-ref: verticals */
+	}
+	.v-window-maximizebox,
+	.v-window-restorebox {
+	        top: 12px;
+	        right: 28px;
+	        width: 15px;
+	        height: 16px;
+	        background: transparent;
+	}
+	.v-window-maximizebox {
+	        &, &:hover,&:active {
+	                background-image: url(img/maximize.png); /** sprite-ref: verticals */
+	        }
+	}
+	.v-window-restorebox {
+	        &, &:hover,&:active {
+	                background-image: url(img/restore.png); /** sprite-ref: verticals */
+	        }
+	}
+	.v-window-contents {
+	        background: #fff;
+	}
+	.v-window-modalitycurtain {
+	        background: #56595b;
+	}
+	
+		
+	
+}
